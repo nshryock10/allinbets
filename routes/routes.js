@@ -11,7 +11,13 @@ router.get("/", (req, res, next) => {
 //Get all users
 router.get('/users', queries.getAllUsers);
 
+//Get all user payment info
+router.get('/paymentinfo', queries.getUsersPaymentInfo);
+
+//Get specific users question answers
+router.get('/answers/:id', queries.getUserQuestionAnswers);
+
 //Add user to data base
-router.post('/users', queries.addUser);
+router.post('/users', queries.addUser, queries.addUserAnswers, queries.addUserPaymentInfo);
 
 module.exports = router;
