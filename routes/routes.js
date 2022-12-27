@@ -7,6 +7,12 @@ router.get("/", (req, res, next) => {
     res.json({ info: 'Node.js, Express, and Postgres API for HotGuyPropBets' });
 })
 
+//Listens for updates to final answers and updates scores
+db.listener.connect(() => console.log('Database connected!'));
+db.listener.query('LISTEN answer_update');
+db.listener.on('notification', () => {
+    queries.updateScores()
+});
 
 //Get all users
 router.get('/users', queries.getAllUsers);
@@ -17,7 +23,10 @@ router.get('/paymentinfo', queries.getUsersPaymentInfo);
 //Get specific users question answers
 router.get('/answers/:id', queries.getUserQuestionAnswers);
 
+//Get questions
+router.get('/questions', queries.getQuestions);
+
 //Add user to data base
-router.post('/users', queries.addUser, queries.addUserAnswers, queries.addUserPaymentInfo);
+router.post('/users', queries.addUser, queries.addUserAnswers, queries.addUserPaymentInfo, queries.updateScores);
 
 module.exports = router;
