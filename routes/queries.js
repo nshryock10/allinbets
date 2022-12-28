@@ -102,10 +102,11 @@ const addUserPaymentInfo = (req, res, next) => {
         paymentTerms: req.body.paymentInfo.paymentTerms,
         paymentComplete: req.body.paymentInfo.paymentComplete,
         paymentMethod: req.body.paymentInfo.paymentMethod,
-        orderId: req.body.paymentInfo.orderId
+        orderId: req.body.paymentInfo.orderId,
+        payerId: req.body.paymentInfo.payerId
     };
-    db.query('INSERT INTO payment_info (user_id, payment_terms, paid, payment_method, order_id) VALUES ($1, $2, $3, $4, $5)',
-    [paymentInfo.user_id, paymentInfo.paymentTerms, paymentInfo.paymentComplete, paymentInfo.paymentMethod, paymentInfo.orderId],
+    db.query('INSERT INTO payment_info (user_id, payment_terms, paid, payment_method, order_id, payer_id) VALUES ($1, $2, $3, $4, $5, $6)',
+    [paymentInfo.user_id, paymentInfo.paymentTerms, paymentInfo.paymentComplete, paymentInfo.paymentMethod, paymentInfo.orderId, paymentInfo.payerId],
     (err, result) => {
         if(err){
             throw err
