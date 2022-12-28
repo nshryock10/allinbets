@@ -20,6 +20,9 @@ router.get('/users', queries.getAllUsers);
 //Get all user payment info
 router.get('/paymentinfo', queries.getUsersPaymentInfo);
 
+//Get game info
+router.get('/gameinfo', queries.getGameInfo);
+
 //Get specific users question answers
 router.get('/answers/:id', queries.getUserQuestionAnswers);
 

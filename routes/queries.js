@@ -45,9 +45,14 @@ const getQuestions = (req, res, next) => {
     })
 }
 
-//Get Answer Key
-const getAnswerKey = (req, res, next) => {
-
+//Get game info
+const getGameInfo = async (req, res, next) => {
+    db.query('SELECT * FROM game_info', (err, result) => {
+        if(err){
+            throw err;
+        }
+        res.status(200).send(result.rows)
+    })
 }
 
 //Add user to database
@@ -435,5 +440,6 @@ module.exports = {
     updateScores,
     setPot,
     updateUserScore,
-    getQuestions
+    getQuestions,
+    getGameInfo
 }
