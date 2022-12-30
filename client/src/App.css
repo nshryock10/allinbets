@@ -1,0 +1,195 @@
+:root {
+ --purple: rgb(119, 91, 180);
+ --light-purple: rgb(155, 136, 196);
+ --lightest-purple: rgb(181, 166, 213);
+ --green: rgb(139, 228, 79);
+ --orange: rgb(243, 176, 52);
+ --neutral: rgb(255, 253, 240);
+ --dark-font: rgb(45, 44, 44);
+}
+
+#root{
+  height: 100%;
+}
+
+html, body {
+  height: 100%;
+  overflow: scroll;
+  max-width: 540px;
+  margin: 0 auto;
+  background: var(--neutral);
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  flex: 1;
+  background-color: var(--neutral);
+}
+
+/* ---------- Universal Styles ---------------*/
+h1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.main{
+  background-color: var(--neutral);
+}
+
+.search-icon{
+  vertical-align: middle;
+  padding-left: 7px;
+}
+
+.search-bar{
+  background-color: rgba(245, 245, 245, 0.875);
+  width: 75%;
+  margin: 0 auto;
+  border-radius: 4px;
+  border: 0.5px gray solid;
+}
+
+.mobile-input{
+  /* Position */
+  margin: 0 auto;
+
+  /* Size */
+  width: 65%;
+
+  /* Design */
+  background-color: rgba(245, 245, 245, 0.875);
+  border-radius: 4px;
+  border: 0.5px gray solid;
+
+  /* Font */
+}
+
+/*------------------ Button Stylign ------------*/
+
+#hero-button{
+  /* Position */
+  
+  /* Size */
+  width: 65%;
+  height: 35px;
+  
+  /* Design */
+  border: none;
+  border-radius: 5px;
+  background-color: var(--green);
+  color: white;
+  margin-bottom: 10px;
+
+  /* Font */
+  font-weight: 600;
+  font-size: 16px;
+}
+
+#hero-button:hover{
+  background-color: var(--orange);
+}
+
+.disable-link{
+  pointer-events: none;
+
+  /* Position */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  
+  /* Size */
+  width: 65%;
+  height: 35px;
+  
+  /* Design */
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(187, 187, 187);
+  color: black;
+  text-decoration: none;
+}
+
+#disable-button{
+  /* Design */
+  background-color: transparent;
+  border: none;
+
+  /* Font */
+  font-weight:600;
+  font-size: 18px;
+}
+
+.text-input {
+  /* Position */
+  margin: 3px 10px;
+
+  /* Size */
+  height: 20px;
+  width: 70%;
+
+  /* Design */
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(245, 245, 245, 0.875);
+
+  /* Font */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/*------------- Footer ------------------------*/
+footer{
+  /* Position */
+  position:relative;
+  bottom: 0;
+  box-sizing: border-box;
+
+  /* Size */
+  height: 60px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+
+  /* Design */
+  background-color: var(--green);
+
+  /* Font */
+  color: white;
+}
+
+.footer-links{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  height: 100%;
+  padding: 0 50px;
+  margin: 0;
+  
+}
+
+footer ul {
+  padding: 0;
+}
+

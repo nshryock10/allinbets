@@ -1,0 +1,45 @@
+
+
+/*------------------- Question Card ----------------------------*/
+.questionCard{
+    /* Position */
+    margin: 10px auto;
+    
+    /* Size */
+    min-height: 50px;
+    padding: 10px;
+    width: 80%;
+
+    /* Design */
+    background-color: white;
+    border: gray 1px solid;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px 0px rgb(160, 160, 160);
+
+    /* Font */
+    color: var(--purple);
+    text-align:  left;
+}
+
+.question-label {
+    /* Position */ 
+
+    /* Font */
+    font-weight: bold;
+}
+
+.question-input {
+     /* Position */
+     margin: 3px;
+ 
+     /* Size */
+     height: 30px;
+     width: 50%;
+ 
+     /* Design */
+     border: gray 1px solid;
+     border-radius: 5px;
+ 
+     /* Font */
+     margin: none;  
+}

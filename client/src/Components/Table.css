@@ -1,0 +1,86 @@
+/*----------- Table Container -----------*/
+.table-section{
+    margin: 0;
+}
+
+.pf {
+    /* Font */
+    color: var(--purple);
+}
+
+.search-form {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+}
+
+.form-label {
+    padding: 5px;
+    margin: 10px auto;
+}
+#table-search-bar{
+    border-radius: 14px;
+}
+/*----------------- Table -----------------*/
+
+table{
+    /* Position */
+
+    /* Size */
+    width: 80%;
+    min-width: 200px;
+    margin: 20px auto;
+    
+    /* Design */
+    border-spacing: 2;
+    border-collapse: collapse;
+    background: var(--purple);
+    border-radius: 5px;
+
+    /* Font */
+}
+
+thead{
+    display: block;
+}
+
+tbody {
+    display: block;
+    max-height: 400px;
+    overflow: scroll;
+}
+
+thead th, tbody td{
+    width: 150px;
+}
+
+td, th {
+    padding-left: 8px;
+}
+
+thead tr {
+    height: 40px;
+    color: var(--neutral);
+}
+
+tbody tr {
+    height: 30px;
+    color: var(--purple);
+    background: white;
+    width: 100%;
+}
+
+tbody tr:nth-child(even){
+    background:var(--light-purple);
+    color: white;
+  }
+  tbody tr:nth-child(odd){
+    background:var(--lightest-purple);
+    color: white;
+  }
+
+  .search-row {
+    border: 5px solid var(--green)
+  }
+
+

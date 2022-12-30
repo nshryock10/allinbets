@@ -1,0 +1,108 @@
+
+.main{
+    background-color: var(--neutral);
+    height: 100%;
+  }
+.main h1{
+    padding: 10px;
+    color: var(--purple);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-header{
+    /* Color */ 
+    background-color: var(--green);
+    color: white;
+
+    margin-top: 0;
+    padding: 10px;
+}
+.body{
+    width:100%;
+    margin: 0 auto;
+}
+
+.signup-form {
+    margin: 0 auto;
+    text-align: left;
+    width: 80%;
+}
+
+.signup-input-container{
+    /* Position */
+    display: flex;
+    flex-direction: column;
+
+    /* Size */
+    box-sizing: border-box;
+    margin: 20px auto;
+    padding: 0;
+
+    /* Design */
+    background-color: white;
+    border: 1px gray solid;
+    border-radius: 5px;
+
+    /* Font */
+}
+
+.signup-label {
+    /* Position*/
+    padding-left: 5px;
+    margin: none;
+
+    /* Size */
+
+    /* Design */
+
+    /* Font */
+    font-size: 12px;
+}
+
+.signup-input {
+    /* Position */
+    float: right;
+    margin-left: 3px;
+    margin-bottom: 1px;
+
+    /* Size */
+    height: 30px;
+    width: 90%;
+
+    /* Design */
+    border: none;
+
+    /* Font */
+    margin: none;    
+}
+
+.birthday-container {
+    flex-direction: row; 
+    align-content: flex-start;
+}
+
+#birthday-input{
+    width: 35px;
+    margin: 0 4px;
+    text-align: center;
+    float: left;
+}
+.checkbox-container {
+    margin: 10px 0;
+}
+.checkbox {
+    margin: 0 15px;
+}
+
+.checkbox-label {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--purple);
+}
+
+.form-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 0;
+}

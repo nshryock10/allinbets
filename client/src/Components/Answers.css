@@ -1,0 +1,55 @@
+h1 {
+    color: var(--purple);
+}
+
+.select-label {
+    margin-right: 10px;
+    color: var(--purple);
+}
+
+.select-dropdown {
+    background-color: white;
+    margin-bottom: 20px auto;
+    height: 30px;
+    width: 130px;
+    border-radius: 3px;
+}
+
+.main-container {
+    margin: 20px auto;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+
+    width: 70%;
+
+    text-align: left;
+}
+
+.question {
+    font-weight: bold;
+}
+
+.question-text {
+    padding: 3px 10px;
+    margin: 0;
+    color: var(--purple);
+}
+
+.score {
+    padding: 10px;
+}
+
+.correct-score {
+    font-weight: bold;
+    color: var(--green);
+}
+
+.incorrect-score {
+    font-weight: bold;
+    color: red;
+}
