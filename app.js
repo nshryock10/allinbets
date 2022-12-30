@@ -16,5 +16,5 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', router);
 
 app.listen(process.env.PORT || PORT, () => {
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+    console.log("Express server listening on port in %s mode", app.settings.env);
   })
