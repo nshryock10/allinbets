@@ -157,7 +157,10 @@ const updateScores = async (req, res, next) => {
                     }
                 })
         }
-       //Update user scores after scoring questions
+       //Update user score was here
+    })
+    .then(() => {
+        //Update user scores after scoring questions
         updateUserScore(); 
     })
 
