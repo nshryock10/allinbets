@@ -290,49 +290,54 @@ const setPayOut = async () => {
                 thirdPlace: []
             };
 
-            //Check for a tie (score below until unqiue value is found)
-            for(let i=0; i <= payOut.length-1; i++){
-                let user = sortedUsers[i];
-                let nextUser = sortedUsers[i + 1];
+            //Check that user array is >= payout
+            if(users.length >= payOut.length){
+                //Check for a tie (score below until unqiue value is found)
+                for(let i=0; i <= payOut.length-1; i++){
+                    let user = sortedUsers[i];
+                    let nextUser = sortedUsers[i + 1];
 
-                tiedUsers.push(user); //initiate tied Users with the current user
+                    tiedUsers.push(user); //initiate tied Users with the current user
 
-                //Check for tied user
-                let x = i; //create itterator for while loop outside of loop
-                while(user.score === nextUser.score && user.scoreDiff === nextUser.scoreDiff){
-                    tiedUsers.push(nextUser);
-                    //Check for end of array
-                    if(x + 2 <= sortedUsers.length-1){
-                        user = sortedUsers[x+1];
-                        nextUser = sortedUsers[x+2];
+                    //Check for tied user
+                    let x = i; //create itterator for while loop outside of loop
+                    while(user.score === nextUser.score && user.scoreDiff === nextUser.scoreDiff){
+                        tiedUsers.push(nextUser);
+                        //Check for end of array
+                        if(x + 2 <= sortedUsers.length-1){
+                            user = sortedUsers[x+1];
+                            nextUser = sortedUsers[x+2];
+                        }
+                        x++;
                     }
-                    x++;
+                    
+
+                    //Add the users array to podium object
+                    if(podium.firstPlace.length === 0){
+                        console.log(`first place i = ${i}`);
+                        podium.firstPlace = tiedUsers;
+                    }else if(podium.secondPlace.length === 0){
+                        console.log(`second place i = ${i}`);
+                        podium.secondPlace = tiedUsers;
+                    }else if(podium.thirdPlace.length === 0){
+                        console.log(`third place i = ${i}`);
+                        podium.thirdPlace = tiedUsers;
+                    }
+
+                    //skip "nextUser" if there is a tie
+                    if(tiedUsers.length > 1){
+                        i++;
+                    }
+                    tiedUsers = []; //empty tied users array
                 }
+
                 
-
-                //Add the users array to podium object
-                if(podium.firstPlace.length === 0){
-                    console.log(`first place i = ${i}`);
-                    podium.firstPlace = tiedUsers;
-                }else if(podium.secondPlace.length === 0){
-                    console.log(`second place i = ${i}`);
-                    podium.secondPlace = tiedUsers;
-                }else if(podium.thirdPlace.length === 0){
-                    console.log(`third place i = ${i}`);
-                    podium.thirdPlace = tiedUsers;
-                }
-
-                //skip "nextUser" if there is a tie
-                if(tiedUsers.length > 1){
-                    i++;
-                }
-                tiedUsers = []; //empty tied users array
             }
-
             //Split the payout through the podium
             const firstPlaceTie = podium.firstPlace.length;
             const secondPlaceTie = podium.secondPlace.length;
             const thirdPlaceTie = podium.thirdPlace.length;
+            
 
             //Split up the pot based on ties / no ties
             if(firstPlaceTie === 1 && secondPlaceTie === 1 && thirdPlaceTie ===1){
