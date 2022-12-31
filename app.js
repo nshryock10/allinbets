@@ -9,7 +9,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
-app.use(express.static('client')); // serve static files (css & js) from the 'public' directory
+app.use(express.static('build')); // serve static files (css & js) from the 'public' directory
 app.use(logger('dev'));
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
