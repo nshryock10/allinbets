@@ -3,11 +3,12 @@ const db = require('../db/index');
 const express = require('express');
 const router = express.Router();
 
+/*
 router.get("/", (req, res, next) => {
     res.json({ info: 'Node.js, Express, and Postgres API for HotGuyPropBets' });
 })
 
-/*
+
 //Listens for updates to final answers and updates scores
 db.listener.connect(() => console.log('Database connected!'));
 db.listener.query('LISTEN answer_update');
