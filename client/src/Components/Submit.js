@@ -132,7 +132,9 @@ function Submit(props) {
     }
     addUserToDB(user);
     //Update user count to have data refresh on home page
+    console.log(props.userCount)
     updateUserCount(props.userCount++)
+    console.log(props.userCount)
     
   }
 
