@@ -38,10 +38,14 @@ function App() {
     } 
 
     //Postgres data
-    const dbData = await getUsers();
-    const payData = await getPaymentInfo();
-    const gameInfo = await getGameInfo();
-    setMainDataBase(dbData, payData, gameInfo);
+    Promise.all([getUsers(),getPaymentInfo(), getGameInfo()])
+    .then(results => {
+      setMainDataBase(results[0], results[1], results[2])
+    })
+    //const dbData = await getUsers();
+    //const payData = await getPaymentInfo();
+    //const gameInfo = await getGameInfo();
+    //setMainDataBase(dbData, payData, gameInfo);
   }
 
   const addUser = (user, index) => {
