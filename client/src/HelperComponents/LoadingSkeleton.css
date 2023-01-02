@@ -1,0 +1,42 @@
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+  
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
+
+  .logo-image{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 1.25rem;
+    margin-left: 10%;
+    margin-top: 5%;
+  }
+  .skeleton-text {
+    width: 75%;
+    height: 1.0rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    margin-left: 10%;
+  }
+  
+  .skeleton-text__body {
+    width: 75%;
+  }
+
+  .body-image{
+    width: 75%;
+    height: 7.5rem;
+    border-radius: .25rem;
+    margin: 5% 10%;
+  }
+  
+  .skeleton-footer {
+    width: 30%;
+  }

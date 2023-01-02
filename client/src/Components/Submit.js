@@ -82,7 +82,7 @@ function Submit(props) {
           });
         }}
         onError={function (err){
-          alert(`Something when wrong, try signing up again. Error code ${err}`)
+          alert(`Something went wrong, try signing up again. Error code ${err}`)
         } }
       />
     </>

@@ -6,6 +6,7 @@ import Questions from './Components/Questions';
 import Submit from './Components/Submit';
 import Answers from './Components/Answers';
 import Nav from './Components/Nav';
+import LoadingSkeleton from './HelperComponents/LoadingSkeleton'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { generateUserIndex } from './utils/utils';
 import { getPaymentInfo, getUsers, getGameInfo } from './utils/api';
@@ -16,11 +17,13 @@ function App() {
   const [paymentInfo, setPaymentInfo] = useState([]);
   const [userCount, setUserCount] = useState(0);
   const [gameInfo, setGameInfo] = useState({});
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
 
-    if(dataBase.length === 0){
+    if(dataBase.length === 0 || gameInfo.length === 0){
       getDataBase();
+      setIsLoading(true);
     }
 
   }, [userCount])
@@ -50,14 +53,14 @@ function App() {
       setDataBase(data => [...data.slice(0,user.index), user, ...data.slice(user.index+1)])
     }
   }
-
+//
   return (
     <Router> 
       <div className="App">
         <div className="content-container">
           <Nav />
           <Routes> 
-            <Route path='/' element={<HomePage dataBase={dataBase}  pot={gameInfo.pot} />} />
+            <Route path='/' element={isLoading ? <HomePage dataBase={dataBase}  pot={gameInfo.pot} /> : <LoadingSkeleton/>} />
             <Route path='signup' element={<SignUp />} />
             <Route path='questions' element={<Questions />} />
             <Route path='answers' element={<Answers dataBase={dataBase} />} />
