@@ -20,7 +20,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-
+    console.log(userCount)
     if(dataBase.length === 0 || gameInfo.length === 0){
       getDataBase();
       setIsLoading(true);
