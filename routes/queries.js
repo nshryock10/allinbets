@@ -192,12 +192,8 @@ const updateUserScore = async (req, res, next) => {
                         throw err;
                     }
                 })
-                .then(async () => {
-                    await setPot();
-                    await setPayOut();
-                })
-
-                
+                await setPot();
+                await setPayOut();
             })
         })
     })
