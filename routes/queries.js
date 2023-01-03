@@ -120,11 +120,11 @@ const addUserPaymentInfo = (req, res, next) => {
 const updateScores = async (req, res, next) => {
 
     Promise.all([db.query('SELECT * FROM user_answers'), db.query('SELECT id, points, final_answer FROM questions')])
-    .then(result => {
+    .then(async (result) => {
         const answers = result[0].rows;
         const answer_key = result[1].rows;
         if(answers.length !== 0){
-            answers.map(row => {
+            await answers.map(row => {
                     let answer = answer_key.find(question => question.id === row.question_id);
                     
                     if(answer === undefined){
@@ -156,9 +156,10 @@ const updateScores = async (req, res, next) => {
                         })
                     }
                 })
+            //Update user scores after scoring questions
+            updateUserScore();    
         }
-       //Update user scores after scoring questions
-       updateUserScore(); 
+        
 
     })
     
