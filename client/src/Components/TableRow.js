@@ -21,6 +21,7 @@ function TableRow(props) {
 
     const userData = await getUsers();
     setData(userData.sort((a,b) => {
+      console.log('Sorting Data...')
       if(Number(b.payout) > Number(a.payout)) return 1;
       if(Number(b.payout) < Number(a.payout)) return -1;
       if(b.score > a.score) return 1;

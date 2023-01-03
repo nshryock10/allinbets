@@ -21,10 +21,10 @@ function App() {
 
   useEffect(() => {
     console.log(userCount)
-    if(dataBase.length === 0 || gameInfo.length === 0){
+    //if(dataBase.length === 0 || gameInfo.length === 0){
       getDataBase();
       setIsLoading(true);
-    }
+    //}
 
   }, [userCount])
 
