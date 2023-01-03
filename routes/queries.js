@@ -175,7 +175,7 @@ const updateUserScore = async (req, res, next) => {
             //Select the user_answers based on user id
             
             await db.query('SELECT user_id, answer_score FROM user_answers WHERE user_id=$1', [user.id])
-            .then(answers => {
+            .then(async (answers) => {
                 const answerArry = answers.rows;
                 let score=0;
                 //Tally the score
@@ -187,10 +187,13 @@ const updateUserScore = async (req, res, next) => {
                 }
                 console.log(`Writing scores...${score}, ${answerArry[0].user_id}`)
                 //Write score to users
-                db.query('UPDATE users SET score=$1 WHERE id=$2', [score, answerArry[0].user_id], (err, result) => {
+                await db.query('UPDATE users SET score=$1 WHERE id=$2', [score, answerArry[0].user_id], (err, result) => {
                     if(err){
                         throw err;
                     }
+                }).then(async () => {
+                    await setPot();
+                    await setPayOut();
                 })
 
                 
@@ -199,8 +202,8 @@ const updateUserScore = async (req, res, next) => {
     })
     
     //Set payout function
-    setPot();
-    setPayOut();  
+    //setPot();
+    //setPayOut();  
 }
 
 const setPot = () => {
