@@ -20,7 +20,7 @@ function TableRow(props) {
 
     const setData = (userData) => {
       setUserData(userData);
-      setLoading(false);
+      //setLoading(false);
     }
 
     const userData = await getUsers();
