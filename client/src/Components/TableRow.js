@@ -6,11 +6,13 @@ import { getUsers } from '../utils/api';
 function TableRow(props) {
 
     const columns = props.columns;
+    const setLoading = props.setLoading;
     const [userData, setUserData] = useState([]);
-    
+
   useEffect(() => {
     //Get payment info
       console.log('getting table rows....')
+      setLoading(true);
       getData();
   }, [])
 
@@ -18,6 +20,7 @@ function TableRow(props) {
 
     const setData = (userData) => {
       setUserData(userData);
+      setLoading(false);
     }
 
     const userData = await getUsers();
@@ -28,6 +31,7 @@ function TableRow(props) {
       if(b.score > a.score) return 1;
       if(b.score < a.score) return -1;
     }));
+
   }
   return (
       

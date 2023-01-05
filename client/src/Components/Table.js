@@ -17,6 +17,7 @@ function Table(props) {
 
     const [query, setQuery] = useState(null);
     const [searchResult, setSearchResult] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if(query === null || query.length > 0){
@@ -39,7 +40,7 @@ function Table(props) {
             </form>
             
         </div>
-        <table className="table">
+        {isLoading ? <div>Loading...</div> : <table className="table">
             <thead>
                 <tr className="table-row">
                     {columns.map(({ label, accessor })=> {
@@ -57,8 +58,8 @@ function Table(props) {
                         </tr>
                 </tbody>
             }
-            <TableRow columns={columns} />
-        </table>
+            <TableRow columns={columns} setLoading={setIsLoading}/>
+        </table>}
     </div>
   );
 }
