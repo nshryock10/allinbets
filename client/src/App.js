@@ -31,6 +31,7 @@ function App() {
   const getDataBase = async () => {
     //Callback function to set data
     const setMainDataBase = (data, paymentData, gameInfo) => {
+      console.log('Setting data...')
       setDataBase(data);
       //setPaymentInfo(paymentData);
       setGameInfo(gameInfo[0]);
@@ -40,6 +41,7 @@ function App() {
     //Postgres data
     Promise.all([getUsers(),getPaymentInfo(), getGameInfo()])
     .then(results => {
+      console.log('grabbing data...')
       setMainDataBase(results[0], results[1], results[2])
     })
     //const dbData = await getUsers();

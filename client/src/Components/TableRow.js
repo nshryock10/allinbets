@@ -10,6 +10,7 @@ function TableRow(props) {
     
   useEffect(() => {
     //Get payment info
+      console.log('getting table rows....')
       getData();
   }, [])
 
