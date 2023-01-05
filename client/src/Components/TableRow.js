@@ -8,11 +8,12 @@ function TableRow(props) {
     const columns = props.columns;
     const setLoading = props.setLoading;
     const [userData, setUserData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     //Get payment info
       console.log('getting table rows....')
-      //setLoading(true);
+      setIsLoading(true);
       getData();
   }, [])
 
@@ -20,7 +21,7 @@ function TableRow(props) {
 
     const setData = (userData) => {
       setUserData(userData);
-      //setLoading(false);
+      setIsLoading(false);
     }
 
     const userData = await getUsers();
