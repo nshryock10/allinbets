@@ -13,7 +13,7 @@ db.prodListener.connect(() => console.log('Database connected!'));
 db.prodListener.query('LISTEN answer_update');
 db.prodListener.on('notification', () => {
     console.log('Database question updated...')
-    queries.updateAllScores()
+    queries.updateScores()
 });
 
 //Get all users
