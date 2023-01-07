@@ -28,7 +28,7 @@ function HomePage (props) {
 
         <div className="home-hero section">
           <div className="hero-flex-container">
-            <h1 onClick={onClick}>JOIN IN AND GET YOUR CHANCE AT ${pot} and COUNTING</h1>
+            <h1 onClick={onClick}>JOIN IN AND GET YOUR CHANCE AT ${Number(pot).toFixed(2)} and COUNTING</h1>
           </div>
           <div className="hero-flex-container">
             <img alt="superbowl logo" className="img" src={superbowl_logo} />

@@ -193,10 +193,11 @@ const updateUserScore = async (req, res, next) => {
                         throw err;
                     }
                 })
-                await setPot();
-                await setPayOut();
+                //await setPot();
+                //await setPayOut();
             })
         })
+        setPot();
     })
     
     //Set payout function
@@ -204,7 +205,7 @@ const updateUserScore = async (req, res, next) => {
     //setPayOut();  
 }
 
-const setPot = () => {
+const setPot = async () => {
     console.log('Setting pot...')
     //Fees
     //$1.5 server fee, $0.49 + $0.41 paypal transaction, $0.87 taxes on $12.40 transaction = $10 buy-in + $3.26 taxes and fees
@@ -212,7 +213,7 @@ const setPot = () => {
     //Get user ids and payment (y/n) from payment_info
     //Get buy-in and fees from game_info
     Promise.all([db.query('SELECT user_id, paid FROM payment_info'), db.query('SELECT game_id, buy_in, fees FROM game_info')])
-    .then(result => {
+    .then(async (result) => {
         const paymentInfo = result[0].rows;
         const gameInfo = result[1].rows[0];
         const gameId = gameInfo.game_id;
@@ -228,12 +229,14 @@ const setPot = () => {
         const pot = totalCollected - totalFees - charity - overhead;
 
         //Write to game_info
-        db.query('UPDATE game_info SET total_collected=$1, total_fees=$2, charity=$3, pot=$4, overhead=$5 WHERE game_id=$6',
+        await db.query('UPDATE game_info SET total_collected=$1, total_fees=$2, charity=$3, pot=$4, overhead=$5 WHERE game_id=$6',
         [totalCollected, totalFees, charity, pot, overhead, gameId], (err, result) => {
             if(err){
                 throw err;
             }
         })
+        
+        setPayOut();
        
     })
     
