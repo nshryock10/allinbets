@@ -164,7 +164,13 @@ const updateScores = async (req, res, next) => {
     })
     
 }
-
+const updateAllScores = async () => {
+    await updateUserScore().then(async () => {
+        await setPot.then(() => {
+            setPayOut();
+        })
+    })
+}
 //Update user overall score
 const updateUserScore = async (req, res, next) => {
     //Select users 
@@ -197,7 +203,7 @@ const updateUserScore = async (req, res, next) => {
                 //await setPayOut();
             })
         })
-        setPot();
+        //setPot();
     })
     
     //Set payout function
@@ -236,7 +242,7 @@ const setPot = async () => {
             }
         })
         
-        setPayOut();
+        //setPayOut();
        
     })
     
@@ -450,5 +456,6 @@ module.exports = {
     setPot,
     updateUserScore,
     getQuestions,
-    getGameInfo
+    getGameInfo,
+    updateAllScores
 }
