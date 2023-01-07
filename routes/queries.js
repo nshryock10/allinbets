@@ -166,7 +166,7 @@ const updateScores = async (req, res, next) => {
 }
 const updateAllScores = async () => {
     await updateUserScore().then(async result => {
-        await setPot.then(result => {
+        await setPot().then(result => {
             setPayOut();
         })
     })
