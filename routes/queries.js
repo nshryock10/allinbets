@@ -155,11 +155,11 @@ const updateScores = async (req, res, next) => {
                             }
                         })
                     }
-                }).then(result => {
-                    //Update user scores after scoring questions
-                    updateUserScore(); 
                 })
         }
+    }).then(result => {
+        //Update user scores after scoring questions
+        updateUserScore(); 
     })
     
 }
@@ -201,9 +201,9 @@ const updateUserScore = async (req, res, next) => {
                 //await setPot();
                 //await setPayOut();
             })
-        }).then(result => {
-            setPot();
         })
+    }).then(result => {
+        setPot();
     })
     
     //Set payout function
