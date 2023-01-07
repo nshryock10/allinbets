@@ -155,9 +155,11 @@ const updateScores = async (req, res, next) => {
                             }
                         })
                     }
+                }).then(result => {
+                    //Update user scores after scoring questions
+                    updateUserScore(); 
                 })
-            //Update user scores after scoring questions
-            updateUserScore();    
+               
         }
         
 
@@ -202,8 +204,9 @@ const updateUserScore = async (req, res, next) => {
                 //await setPot();
                 //await setPayOut();
             })
+        }).then(result => {
+            setPot();
         })
-        //setPot();
     })
     
     //Set payout function
@@ -240,9 +243,9 @@ const setPot = async () => {
             if(err){
                 throw err;
             }
+        }).then(result => {
+            setPayOut();
         })
-        
-        //setPayOut();
        
     })
     
