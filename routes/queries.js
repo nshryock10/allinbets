@@ -155,15 +155,13 @@ const updateScores = async (req, res, next) => {
                             }
                         })
                     }
-                }).then(result => {
-                    //Update user scores after scoring questions
-                    updateUserScore(); 
                 })
                
         }
-        
-
-    })
+    }).then(result => {
+                    //Update user scores after scoring questions
+                    updateUserScore(); 
+                })
     
 }
 const updateAllScores = async () => {
