@@ -32,6 +32,6 @@ router.get('/answers/:id', queries.getUserQuestionAnswers);
 router.get('/questions', queries.getQuestions);
 
 //Add user to data base
-router.post('/users', queries.addUser, queries.addUserAnswers, queries.addUserPaymentInfo, queries.updateAllScores);
+router.post('/users', queries.addUser, queries.addUserAnswers, queries.addUserPaymentInfo, queries.updateScores, queries.updateUserScore, queries.setPot, queries.setPayOut);
 
 module.exports = router;

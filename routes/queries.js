@@ -161,6 +161,7 @@ const updateScores = async (req, res, next) => {
         //Update user scores after scoring questions
         updateUserScore(); 
     })*/
+    next();
     
 }
 const updateAllScores = async () => {
@@ -212,9 +213,10 @@ const updateUserScore = async (req, res, next) => {
     //Set payout function
     //setPot();
     //setPayOut();  
+    next()
 }
 
-const setPot = async () => {
+const setPot = async (next) => {
     console.log('Setting pot...')
     //Fees
     //$1.5 server fee, $0.49 + $0.41 paypal transaction, $0.87 taxes on $12.40 transaction = $10 buy-in + $3.26 taxes and fees
@@ -250,10 +252,11 @@ const setPot = async () => {
         })*/
        
     })
+    next();
     
 }
 
-const setPayOut = async () => {
+const setPayOut = async (next) => {
     console.log('Setting payout...')
     //Get the pot and charity
     db.query('SELECT id FROM questions')
@@ -447,6 +450,8 @@ const setPayOut = async () => {
         
         
     })
+
+    next();
             
 }
 
@@ -458,8 +463,9 @@ module.exports = {
     addUserAnswers,
     addUserPaymentInfo,
     updateScores,
-    setPot,
     updateUserScore,
+    setPot,
+    setPayOut,
     getQuestions,
     getGameInfo,
     updateAllScores
