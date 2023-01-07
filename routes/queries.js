@@ -155,13 +155,12 @@ const updateScores = async (req, res, next) => {
                             }
                         })
                     }
-                })
-               
-        }
-    }).then(result => {
+                }).then(result => {
                     //Update user scores after scoring questions
                     updateUserScore(); 
                 })
+        }
+    })
     
 }
 const updateAllScores = async () => {
@@ -175,10 +174,10 @@ const updateAllScores = async () => {
 const updateUserScore = async (req, res, next) => {
     //Select users 
     await db.query('SELECT id FROM users')
-    .then( users => {
+    .then( async users => {
         const user_ids = users.rows;
         //Iterate through all users
-        user_ids.map(async (user) => {
+        await user_ids.map(async (user) => {
             //Select the user_answers based on user id
             
             await db.query('SELECT user_id, answer_score FROM user_answers WHERE user_id=$1', [user.id])
