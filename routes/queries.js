@@ -118,7 +118,7 @@ const addUserPaymentInfo = (req, res, next) => {
 
 //Update question scores
 const updateScores = async (req, res, next) => {
-
+    console.log('Starting to score user answers...')
     Promise.all([db.query('SELECT * FROM user_answers'), db.query('SELECT id, points, final_answer FROM questions')])
     .then(async (result) => {
         const answers = result[0].rows;
@@ -161,6 +161,7 @@ const updateScores = async (req, res, next) => {
         //Update user scores after scoring questions
         updateUserScore(); 
     })*/
+    console.log('Finished scoring user answers...')
     next();
     
 }
@@ -176,6 +177,7 @@ const updateAllScores = async () => {
 }
 //Update user overall score
 const updateUserScore = async (req, res, next) => {
+    console.log('Starting to update user overall scores...')
     //Select users 
     await db.query('SELECT id FROM users')
     .then( async users => {
@@ -213,7 +215,8 @@ const updateUserScore = async (req, res, next) => {
     //Set payout function
     //setPot();
     //setPayOut();  
-    next()
+    console.log('Finished updating user overall scores...')
+    next();
 }
 
 const setPot = async (req, res, next) => {
@@ -252,6 +255,7 @@ const setPot = async (req, res, next) => {
         })*/
        
     })
+    console.log('Finished updating put')
     next();
     
 }
@@ -451,8 +455,7 @@ const setPayOut = async (req, res, next) => {
         
     })
 
-    next();
-            
+    console.log('Finished setting pot')
 }
 
 module.exports = {
