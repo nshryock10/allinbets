@@ -13,7 +13,7 @@ db.prodListener.connect(() => console.log('Database connected!'));
 db.prodListener.query('LISTEN answer_update');
 db.prodListener.on('notification', () => {
     console.log('Database question updated...')
-    queries.updateAllScores()
+    queries.updateScores()
 });
 
 //Get all users
@@ -33,5 +33,5 @@ router.get('/questions', queries.getQuestions);
 
 //Add user to data base
 //router.post('/users', queries.addUser, queries.addUserAnswers, queries.addUserPaymentInfo, queries.updateScores, queries.updateUserScore, queries.setPot, queries.setPayOut);
-router.post('/users', queries.addUser, queries.addUserAnswers, queries.addUserPaymentInfo, queries.updateAllScores);
+router.post('/users', queries.addUser, queries.addUserAnswers, queries.addUserPaymentInfo, queries.updateScores);
 module.exports = router;
