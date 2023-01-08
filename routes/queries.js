@@ -206,10 +206,11 @@ const updateUserScore = async (req, res, next) => {
                 })
                 //await setPot();
                 //await setPayOut();
+                console.log('Finished updating user overall scores...')
+                next();
             })
         })
-        console.log('Finished updating user overall scores...')
-        next();
+        
     })/*.then(result => {
         setPot();
     })*/
