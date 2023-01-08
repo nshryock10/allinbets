@@ -208,6 +208,8 @@ const updateUserScore = async (req, res, next) => {
                 //await setPayOut();
             })
         })
+        console.log('Finished updating user overall scores...')
+        next();
     })/*.then(result => {
         setPot();
     })*/
@@ -215,8 +217,7 @@ const updateUserScore = async (req, res, next) => {
     //Set payout function
     //setPot();
     //setPayOut();  
-    console.log('Finished updating user overall scores...')
-    next();
+    
 }
 
 const setPot = async (req, res, next) => {
@@ -253,10 +254,10 @@ const setPot = async (req, res, next) => {
         .then(result => {
             setPayOut();
         })*/
-       
+        console.log('Finished updating pot')
+        next();
     })
-    console.log('Finished updating put')
-    next();
+    
     
 }
 
@@ -448,14 +449,13 @@ const setPayOut = async (req, res, next) => {
                         throw err;
                     }
                 })
+                
             }
-            
+            console.log('Finished setting payout')
         })
-        
-        
     })
 
-    console.log('Finished setting pot')
+    
 }
 
 module.exports = {
