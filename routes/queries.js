@@ -162,7 +162,7 @@ const updateScores = async (req, res, next) => {
         updateUserScore(); 
     })*/
     console.log('Finished scoring user answers...')
-    next();
+    //next();
     
 }
 const updateAllScores = async () => {
@@ -207,7 +207,7 @@ const updateUserScore = async (req, res, next) => {
                 //await setPot();
                 //await setPayOut();
                 console.log('Finished updating user overall scores...')
-                next();
+                //next();
             })
         })
         
@@ -256,7 +256,7 @@ const setPot = async (req, res, next) => {
             setPayOut();
         })*/
         console.log('Finished updating pot')
-        next();
+        //next();
     })
     
     
