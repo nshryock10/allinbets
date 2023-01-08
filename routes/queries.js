@@ -156,13 +156,14 @@ const updateScores = async (req, res, next) => {
                         })
                     }
                 })
+                console.log('Finished scoring user answers...')
         }
     })/*.then(result => {
         //Update user scores after scoring questions
         updateUserScore(); 
     })*/
-    console.log('Finished scoring user answers...')
-    next();
+    
+    //next();
     
 }
 const updateAllScores = async (req, res, next) => {
@@ -210,7 +211,7 @@ const updateUserScore = async (req, res, next) => {
             })
         })
         console.log('Finished updating user overall scores...')
-        next();
+        //next();
     })/*.then(result => {
         setPot();
     })*/
@@ -256,7 +257,7 @@ const setPot = async (req, res, next) => {
             setPayOut();
         })*/
         console.log('Finished updating pot')
-        next();
+        //next();
     })
     
     
@@ -452,7 +453,7 @@ const setPayOut = async (req, res, next) => {
                 })
                 
             }
-            console.log('Finished setting payout')
+            //console.log('Finished setting payout')
         })
     })
 
