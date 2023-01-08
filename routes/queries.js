@@ -162,10 +162,10 @@ const updateScores = async (req, res, next) => {
         updateUserScore(); 
     })*/
     console.log('Finished scoring user answers...')
-    //next();
+    next();
     
 }
-const updateAllScores = async () => {
+const updateAllScores = async (req, res, next) => {
     await updateScores().then(async result => {
         await updateUserScore().then(async result => {
             await setPot().then(result => {
@@ -206,11 +206,11 @@ const updateUserScore = async (req, res, next) => {
                 })
                 //await setPot();
                 //await setPayOut();
-                console.log('Finished updating user overall scores...')
-                //next();
+                
             })
         })
-        
+        console.log('Finished updating user overall scores...')
+        next();
     })/*.then(result => {
         setPot();
     })*/
@@ -256,7 +256,7 @@ const setPot = async (req, res, next) => {
             setPayOut();
         })*/
         console.log('Finished updating pot')
-        //next();
+        next();
     })
     
     
