@@ -216,7 +216,7 @@ const updateUserScore = async (req, res, next) => {
     next()
 }
 
-const setPot = async (next) => {
+const setPot = async (req, res, next) => {
     console.log('Setting pot...')
     //Fees
     //$1.5 server fee, $0.49 + $0.41 paypal transaction, $0.87 taxes on $12.40 transaction = $10 buy-in + $3.26 taxes and fees
@@ -256,7 +256,7 @@ const setPot = async (next) => {
     
 }
 
-const setPayOut = async (next) => {
+const setPayOut = async (req, res, next) => {
     console.log('Setting payout...')
     //Get the pot and charity
     db.query('SELECT id FROM questions')
