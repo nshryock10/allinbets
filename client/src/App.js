@@ -25,7 +25,6 @@ function App() {
     console.log('Looking at the database')
     setIsLoading(true);
     const timer = setTimeout(getDataBase(), 2000)
-    console.log(timer)
     return () => clearTimeout(timer);
     
     //}

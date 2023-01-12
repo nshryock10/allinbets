@@ -17,7 +17,8 @@ function HomePage (props) {
     const answerKey = getAnswerKey();
 
     useEffect(() => {
-      console.log('home page re-rendered!')
+      const timer = setTimeout(() => console.log('home page re-rendered!'), 1000);
+      return () => clearTimeout(timer)
     }, [])
 
     const onClick = () => {
