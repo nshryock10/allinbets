@@ -197,7 +197,6 @@ const updatePayout = () => {
                 scoredUsers[i].payOut = '0';
             }
         }
-        console.log(scoredUsers);
 
         for(let i=0; i < scoredUsers.length; i++){
             db.query('UPDATE users SET score=$1, payout=$2 WHERE id=$3', 

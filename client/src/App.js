@@ -22,11 +22,12 @@ function App() {
   useEffect(() => {
     console.log(userCount)
     //if(dataBase.length === 0 || gameInfo.length === 0){
-      setIsLoading(true);
-      getDataBase();
+    console.log('Looking at the database')
+    setIsLoading(true);
+    getDataBase();
     //}
 
-  }, [userCount])
+  }, [])
 
   const getDataBase = async () => {
     //Callback function to set data
