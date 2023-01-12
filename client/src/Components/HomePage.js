@@ -17,8 +17,8 @@ function HomePage (props) {
     const answerKey = getAnswerKey();
 
     useEffect(() => {
-      
-    })
+      console.log('home page re-rendered!')
+    }, [])
 
     const onClick = () => {
       addUser();

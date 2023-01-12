@@ -76,7 +76,6 @@ function Submit(props) {
         }}
         onApprove={function (data, actions) {
           return actions.order.capture().then(() => {
-            console.log(data)
             setUser({...user, paymentComplete: true, orderId: data.orderID, paymentMethod: data.paymentSource, payerId: data.payerID});
             
           });
