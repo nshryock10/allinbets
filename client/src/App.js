@@ -24,7 +24,7 @@ function App() {
     //if(dataBase.length === 0 || gameInfo.length === 0){
     console.log('Looking at the database')
     setIsLoading(true);
-    const timer = setTimeout(getDataBase(), 2000)
+    const timer = setTimeout(getDataBase(), 3000)
     return () => clearTimeout(timer);
     
     //}
