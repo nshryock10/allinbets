@@ -7,6 +7,7 @@ import { getAnswerKey } from '../utils/utils';
 import { Link } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import { addUser } from '../utils/api';
+import { useEffect } from 'react';
 
 function HomePage (props) {
 
@@ -14,6 +15,10 @@ function HomePage (props) {
     const payData = props.paymentData;
     const pot = props.pot;  
     const answerKey = getAnswerKey();
+
+    useEffect(() => {
+      
+    })
 
     const onClick = () => {
       addUser();

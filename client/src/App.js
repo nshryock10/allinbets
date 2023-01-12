@@ -25,6 +25,7 @@ function App() {
     console.log('Looking at the database')
     setIsLoading(true);
     const timer = setTimeout(getDataBase(), 2000)
+    console.log(timer)
     return () => clearTimeout(timer);
     
     //}
@@ -33,19 +34,19 @@ function App() {
 
   const getDataBase = async () => {
     //Callback function to set data
-    const setMainDataBase = (data, paymentData, gameInfo) => {
+    const setMainDataBase = (data, gameInfo) => {
       console.log('Setting data...')
+      setIsLoading(false)
       setDataBase(data);
-      //setPaymentInfo(paymentData);
       setGameInfo(gameInfo[0]);
 
     } 
 
     //Postgres data
-    Promise.all([getUsers(),getPaymentInfo(), getGameInfo()])
+    Promise.all([getUsers(), getGameInfo()])
     .then(results => {
       console.log('grabbing data...')
-      setMainDataBase(results[0], results[1], results[2])
+      setMainDataBase(results[0], results[1])
     })
     //const dbData = await getUsers();
     //const payData = await getPaymentInfo();
@@ -69,7 +70,7 @@ function App() {
         <div className="content-container">
           <Nav />
           <Routes> 
-            <Route path='/' element={isLoading ? <HomePage dataBase={dataBase}  pot={gameInfo.pot} /> : <LoadingSkeleton/>} />
+            <Route path='/' element={!isLoading ? <HomePage dataBase={dataBase}  pot={gameInfo.pot} /> : <LoadingSkeleton/>} />
             <Route path='signup' element={<SignUp />} />
             <Route path='questions' element={<Questions />} />
             <Route path='answers' element={<Answers dataBase={dataBase} />} />
