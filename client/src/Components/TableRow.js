@@ -14,7 +14,8 @@ function TableRow(props) {
     //Get payment info
       console.log('getting table rows....')
       setIsLoading(true);
-      getData();
+      const timer = setTimeout(getData(), 1000)
+      return () => clearTimeout(timer);
   }, [])
 
   const getData = async () => {
