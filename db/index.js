@@ -1,5 +1,5 @@
 const { Pool, Client } = require('pg');
-const { updateScores } = require('../routes/queries')
+//const { updateScores } = require('../routes/queries')
 
 const devPool = new Pool({
     user:'nshryock',

@@ -1,6 +1,7 @@
 const db = require('../db/index');
 const format = require('pg-format');
 const { response } = require('express');
+const { rankUsers, scoreAnswers, setPodium, accumulateScore } = require('../utils/helpers')
 
 //Get all users from data base
 const getAllUsers = (req, res, next) => {
@@ -167,6 +168,59 @@ const updateScores = async (req, res, next) => {
     //next();
     
 }
+
+const updatePayout = () => {
+
+    Promise.all([db.query('SELECT * FROM user_answers'), db.query('SELECT id, points, final_answer FROM questions'),
+    db.query('SELECT pot FROM game_info')])
+    .then(result => {
+        const answers = result[0].rows;
+        const answerKey = result[1].rows;
+        const pot = result[2].rows[0].pot;
+        
+        const firstPlace = pot * 0.6;
+        const secondPlace = pot * 0.3;
+        const thirdPlace = pot *0.1;
+        const payOut = [firstPlace, secondPlace, thirdPlace];
+        
+        const scoredAnswers = scoreAnswers(answers, answerKey);
+        const scoredUsers = accumulateScore(scoredAnswers);
+        const podium = setPodium(scoredUsers, payOut, answerKey);
+        
+        //Add podium score to scoredUsers
+        for(let i=0; i < scoredUsers.length; i++){
+            const payOut = podium.find(user => user.id === scoredUsers[i].id);
+            
+            if(payOut){ 
+                scoredUsers[i].payOut = payOut.payOut;
+            }else{
+                scoredUsers[i].payOut = '0';
+            }
+        }
+        console.log(scoredUsers);
+
+        for(let i=0; i < scoredUsers.length; i++){
+            db.query('UPDATE users SET score=$1, payout=$2 WHERE id=$3', 
+            [scoredUsers[i].score, scoredUsers[i].payOut, scoredUsers[i].id], (err, result) => {
+                if(err){
+                    throw err;
+                }
+            })
+
+            for(let j=0; j < scoredUsers[i].questions.length; j++){
+                db.query('UPDATE user_answers SET answer_score=$1 WHERE user_id=$2 AND question_id=$3', 
+                [scoredUsers[i].questions[j].score, scoredUsers[i].id, scoredUsers[i].questions[j].question_id], (err, result) => {
+                    if(err){
+                        throw err;
+                    }
+                })
+            }
+
+        }
+    })
+
+}
+
 const updateAllScores = async (req, res, next) => {
     await updateScores().then(async result => {
         await updateUserScore().then(async result => {
@@ -253,12 +307,14 @@ const setPot = async (req, res, next) => {
             if(err){
                 throw err;
             }
-        }).then(result => {
-            console.log('Finished updating pot')
-            setPayOut();
         })
         
-        //next();
+        /*.then(result => {
+            console.log('Finished updating pot')
+            setPayOut();
+        })*/
+        
+        next();
     })
     
     
@@ -356,7 +412,6 @@ const setPayOut = async (req, res, next) => {
                     }
                     tiedUsers = []; //empty tied users array
                 }
-
                 
             }
             //Split the payout through the podium
@@ -474,5 +529,6 @@ module.exports = {
     setPayOut,
     getQuestions,
     getGameInfo,
-    updateAllScores
+    updateAllScores,
+    updatePayout
 }
