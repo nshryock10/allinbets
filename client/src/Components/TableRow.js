@@ -16,7 +16,7 @@ function TableRow(props) {
       setIsLoading(true);
       const timer = setTimeout(getData(), 2000)
       return () => clearTimeout(timer);
-  }, [])
+  })
 
   const getData = async () => {
 

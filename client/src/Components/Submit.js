@@ -150,7 +150,7 @@ function Submit(props) {
               <p>${buyInAmount}</p>
             </div>
             <div className="lineTotal">
-              <p>Processing and Service Fee:</p>
+              <p>Taxes and Fees:</p>
               <p>${processingFee}</p>
             </div>
             <div className="lineTotal total">

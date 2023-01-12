@@ -149,6 +149,7 @@ function SignUp() {
               <div className="birthday-container">
                 <input className="signup-input" 
                         id="birthday-input" 
+                        type="number"
                         placeholder='mm' 
                         onChange={(e) => {
                           setMm(e.currentTarget.value)
@@ -158,6 +159,7 @@ function SignUp() {
                   </input>
                   <input className="signup-input" 
                           id="birthday-input" 
+                          type="number"
                           placeholder='dd' 
                           onChange={(e) => {
                             setDd(e.currentTarget.value)
@@ -167,6 +169,7 @@ function SignUp() {
                   </input>
                   <input className="signup-input"
                           id="birthday-input"
+                          type="number"
                           placeholder='yyyy' 
                           onChange={(e) => setYyyy(e.currentTarget.value)}
                           onBlur={(e) => handleBlur(e)}>
