@@ -24,16 +24,19 @@ function TableRow(props) {
       setIsLoading(false);
     }
 
-    const userData = await getUsers();
-    setData(userData.sort((a,b) => {
-      console.log('Sorting Data...')
-      if(Number(b.payout) > Number(a.payout)) return 1;
-      if(Number(b.payout) < Number(a.payout)) return -1;
-      if(b.score > a.score) return 1;
-      if(b.score < a.score) return -1;
-    }));
+    const userData = await getUsers().then(data => {
+      setData(data.sort((a,b) => {
+        console.log('Sorting Data...')
+        if(Number(b.payout) > Number(a.payout)) return 1;
+        if(Number(b.payout) < Number(a.payout)) return -1;
+        if(b.score > a.score) return 1;
+        if(b.score < a.score) return -1;
+      }));
+    });
+    
 
   }
+
   return (
       
       
