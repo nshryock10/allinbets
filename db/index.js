@@ -39,7 +39,7 @@ const prodListener = new Client({
 
 module.exports = {
     query: (text, params, callback) => {
-        return devPool.query(text, params, callback);
+        return prodPool.query(text, params, callback);
     },
     listener,
     prodListener

@@ -9,9 +9,9 @@ router.get("/", (req, res, next) => {
 })
 
 //Listens for updates to final answers and updates scores
-db.listener.connect(() => console.log('Database connected!'));
-db.listener.query('LISTEN answer_update');
-db.listener.on('notification', () => {
+db.prodListener.connect(() => console.log('Database connected!'));
+db.prodListener.query('LISTEN answer_update');
+db.prodListener.on('notification', () => {
     console.log('Database question updated...')
     queries.updatePayout()
 });

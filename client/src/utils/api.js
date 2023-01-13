@@ -1,8 +1,8 @@
 import { v4 as uuid4 } from 'uuid';
 //const { v4: uuidv4 } = require("uuid");
 
-export const API_ENDPOINT = "http://localhost:3000"; //Uncomment in Dev
-//export const API_ENDPOINT = "https://all-in-bets.herokuapp.com"; //Uncomment in production
+//export const API_ENDPOINT = "http://localhost:3000"; //Uncomment in Dev
+export const API_ENDPOINT = "https://all-in-bets.herokuapp.com"; //Uncomment in production
 
 //Get all users from database
 export const getUsers = async () => {
