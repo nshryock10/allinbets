@@ -5,6 +5,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { IoLogoVenmo } from "react-icons/io5";
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import {addUser as addUserToDB } from '../utils/api';
+import LoadingDots from '../HelperComponents/LoadingDots';
+import PayButtons from './PayPalButton';
 
 function Submit(props) {
 
@@ -32,62 +34,6 @@ function Submit(props) {
   const currency = "USD";
   const style = { layout: "vertical" };
   const [paymentCompleted, setPaymentCompleted] = useState(false);
-
-  //Component to wrap button and handle currency change
-  const ButtonWrapper = ({ currency, showSpinner }) => {
-
-    const [{ options, isPending}, dispatch] = usePayPalScriptReducer();
-
-    useEffect(() => {
-      dispatch({
-        type: 'resetOptions',
-        value: {
-          ...options,
-          currency: currency,
-        },
-      });
-    }, [currency, showSpinner]);
-
-    return(<>
-      { (isPending) && <div className="spinner">Loading...</div> }
-      <PayPalButtons 
-        style={style}
-        disabled={false}
-        forceReRender={[buyInAmount, currency, style]}
-        //fundingSource="venmo"
-        createOrder={(data, actions) => {
-          return actions.order
-              .create({
-                purchase_units:[
-                  {
-                    amount: {
-                      currency_code: currency,
-                      value: total
-                    },
-                  },
-                ],
-                application_context: {
-                  shipping_preference: "NO_SHIPPING"
-                }
-              })
-              .then((orderId) => {
-                return orderId;
-              });
-        }}
-        onApprove={function (data, actions) {
-          return actions.order.capture().then(() => {
-            setUser({...user, paymentComplete: true, orderId: data.orderID, paymentMethod: data.paymentSource, payerId: data.payerID});
-            
-          });
-        }}
-        onError={function (err){
-          alert(`Something went wrong, try signing up again. Error code ${err}`)
-        } }
-      />
-    </>
-    );
-  }
-  
 
   const [user, setUser] = useState({
                                       userInfo: userInfo,
@@ -142,7 +88,7 @@ function Submit(props) {
   return (
     <div className="main">
         <h1>Complete payment to submit answers</h1>
-        <form>
+        <form id="submit-form">
           <div className="questionCard">
             <h3>Checkout</h3>
             <div className="lineTotal">
@@ -169,9 +115,13 @@ function Submit(props) {
         {(user.paymentTerms && !user.paymentComplete) &&
         (<div id="paypal-button-container">
           <PayPalScriptProvider options={paymentOptions}>
-            <ButtonWrapper
+            <PayButtons
+              user={user}
+              setUser={setUser}
               currency={currency}
               showSpinner={false}
+              buyInAmount={buyInAmount}
+              total={total}
             />
           </PayPalScriptProvider>
         </div>

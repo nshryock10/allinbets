@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import * as Icon from 'react-bootstrap-icons';
 import { IoMan, IoFlameSharp } from "react-icons/io5";
+import { GiTakeMyMoney } from "react-icons/gi";
 import classNames from 'classnames';
 
 function Nav() {
@@ -26,10 +27,9 @@ function Nav() {
     <nav>
       <div className="logo-container">
         <div className="icon-container">
-          <IoFlameSharp className="logo-icon"/>
-          <IoMan className="logo-icon" />
+          <GiTakeMyMoney className="logo-icon"/>
         </div>
-        <h3>HotGuyPropBets</h3>
+        <h3>All In Bets</h3>
       </div>
       <div className="mobile-nav">
         <span >

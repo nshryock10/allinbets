@@ -1,0 +1,181 @@
+/*----------------- Universal ---------------------------*/
+h1{
+    font-size:24px;
+}
+h2{
+    font-size: 14px;
+}
+
+/*----------------- Main ---------------------------*/
+.main{
+    background-color: var(--neutral);
+    height: 100%;
+  }
+.main-header{
+    /* Color */ 
+    background-color: var(--green);
+    color: white;
+
+    margin-top: 0;
+    padding: 10px;
+}
+
+.body{
+    width:100%;
+    margin: 10px auto;
+}
+
+/* -------------- Hero Section -----------------------*/
+.home-hero{
+    /* Position */
+    margin: 0 auto;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+     /* Size */
+    width: 80%;
+    max-height: 350px;
+
+    /* Design */
+    
+    /* Font */
+    color: var(--purple);
+} 
+.hero-flex-container{
+    /* Position */
+    
+    /* Size */
+    box-sizing: border-box;
+    margin: 0 10px;
+    max-width: 90%;
+    max-height: 200px;
+
+    /* Design */
+    
+    /* Font */
+}
+.hero-flex-container h1{
+    /* Position */
+    
+    /* Size */
+
+    /* Design */
+    
+    /* Font */
+    text-align: center;
+    font: Helvetica Bold;
+}
+.hero-flex-container img{
+    width: 50vw;
+    max-width: 277px;
+    height: auto;
+}
+
+.button-section{
+    height: 50px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+    padding: 10px 0;   
+}
+
+
+
+/* Full Screen Styling 
+@media screen and (min-width: 760px){
+
+    .body{
+        max-width: 85rem;
+        margin: 0 auto;
+    }
+
+    .home-hero{
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        height: 200px;
+        
+        /* Color 
+        color: var(--purple);
+    } 
+
+    .hero-flex-container{
+        margin: 10px;
+        max-width: 50%;
+        max-height: 200px;
+    }
+    .hero-flex-container h1{
+        text-align: left;
+    }
+    .hero-flex-container img{
+        width: auto;
+        height: 100%;
+    }
+    #hero-button{
+        /* Position 
+        position: sticky;
+        top: 275px;
+        left: 10%;
+        
+        /* Size 
+        width: 200px;
+        height: 50px;
+        
+        /* Design 
+        border: none;
+        border-radius: 5px;
+        background-color: var(--green);
+
+        /* Font 
+        font-weight: 400px;
+        color: white;
+    }
+}
+*/
+/* -------------- Instructions -----------------------*/
+.question-icon {
+    width: 45px;
+    height: 45px;
+}
+
+.instructions{
+    /* Position */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    /* Size */
+    padding: 30px;
+    width: 80%;
+    margin: 0 auto;
+    
+    /* Design */
+    background-color: var(--purple);
+    
+    /* Font */
+    color: white;
+    
+}
+
+.instruction-step{
+    /* Position */
+    
+    /* Size */
+    padding: 5px;
+    width: 80%;
+    margin: 10px auto;
+
+    /* Design */
+    background-color: var(--neutral);
+    border-radius: 10px;
+
+    /* Font */
+    color:var(--dark-font);
+
+    
+}
+
+

@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import HomePage from './Components/HomePage';
+import HomePage1 from './Components/HomePage1';
 import SignUp from './Components/SignUp';
 import Questions from './Components/Questions';
 import Submit from './Components/Submit';
@@ -69,7 +70,7 @@ function App() {
         <div className="content-container">
           <Nav />
           <Routes> 
-            <Route path='/' element={!isLoading ? <HomePage dataBase={dataBase}  pot={gameInfo.pot} /> : <LoadingSkeleton/>} />
+            <Route path='/' element={!isLoading ? <HomePage1 dataBase={dataBase}  pot={gameInfo.pot} /> : <LoadingSkeleton/>} />
             <Route path='signup' element={<SignUp />} />
             <Route path='questions' element={<Questions />} />
             <Route path='answers' element={<Answers dataBase={dataBase} />} />
