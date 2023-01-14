@@ -27,12 +27,22 @@ const getUsersPaymentInfo = (req, res, next) => {
 //Get a specific users questions and answers
 const getUserQuestionAnswers = (req, res, next) => {
     const id = req.params.id;
-    db.query('SELECT questions.question, user_answers.answer, user_answers.answer_score FROM questions JOIN user_answers ON questions.id = user_answers.question_id WHERE user_answers.user_id=$1 ORDER BY user_answers.question_id',
+    db.query('SELECT questions.id, questions.question, user_answers.answer, user_answers.answer_score FROM questions JOIN user_answers ON questions.id = user_answers.question_id WHERE user_answers.user_id=$1 ORDER BY user_answers.question_id',
     [id], (err, result) => {
         if(err){
             throw err
         }
-        res.status(200).send(result.rows)
+
+        //Sort questions by id
+        const sortedQuestions = result.rows.sort((a,b) => {
+            //First sort by id
+            if(a.id > b.id) return 1;
+            if(a.id < b.id) return -1;
+        });
+
+        res.status(200).send(sortedQuestions);
+
+        //res.status(200).send(result.rows)
     })
 }
 
