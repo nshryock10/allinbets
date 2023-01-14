@@ -13,7 +13,7 @@ function PayButtons (props) {
     const CLIENT_ID = 'AflGXddWb4KVamd5un9eY3zdBwkFwm0OfRztruHurzIKaHAj_ZEm4QSzFcaXDXW4gqDhlsu30_s2rmEC';
     const sb_ID = 'AaP9oeFAJXTholgWoJH_xSeqcl-3C_SdpcaJ_UjpkbtO2tGl4i9qx1kSGr4WHX_IPT72yr-p9LgAqbov';
     const paymentOptions = {
-      "client-id": sb_ID,
+      "client-id": CLIENT_ID,
       components: "buttons,funding-eligibility",
       "enable-funding": "venmo",
       currency: "USD",

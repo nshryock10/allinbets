@@ -12,7 +12,7 @@ function TableRow(props) {
 
   useEffect(() => {
     //Get payment info
-      console.log('getting table rows....')
+      //console.log('getting table rows....')
       setIsLoading(true);
       const timer = setTimeout(getData(), 3000)
       return () => clearTimeout(timer);
@@ -27,7 +27,7 @@ function TableRow(props) {
 
     const userData = await getUsers().then(data => {
       setData(data.sort((a,b) => {
-        console.log('Sorting Data...')
+        //console.log('Sorting Data...')
         if(Number(b.payout) > Number(a.payout)) return 1;
         if(Number(b.payout) < Number(a.payout)) return -1;
         if(b.score > a.score) return 1;

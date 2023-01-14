@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     console.log(userCount)
     //if(dataBase.length === 0 || gameInfo.length === 0){
-    console.log('Looking at the database')
+    //console.log('Looking at the database')
     setIsLoading(true);
     const timer = setTimeout(getDataBase(), 3000)
     return () => clearTimeout(timer);
@@ -35,7 +35,7 @@ function App() {
   const getDataBase = async () => {
     //Callback function to set data
     const setMainDataBase = (data, gameInfo) => {
-      console.log('Setting data...')
+      //console.log('Setting data...')
       setIsLoading(false)
       setDataBase(data);
       setGameInfo(gameInfo[0]);
@@ -45,7 +45,7 @@ function App() {
     //Postgres data
     Promise.all([getUsers(), getGameInfo()])
     .then(results => {
-      console.log('grabbing data...')
+      //console.log('grabbing data...')
       setMainDataBase(results[0], results[1])
     })
     //const dbData = await getUsers();
