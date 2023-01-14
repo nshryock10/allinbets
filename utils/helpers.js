@@ -10,7 +10,7 @@ const rankUsers = (users) => {
         if(a.scoreDiff < b.scoreDiff) return -1;
 
     });
-    
+
     return sortedUsers;
 }
 
@@ -70,7 +70,14 @@ const accumulateScore = (users) => {
 
 const setPodium = (users, payOut, answerKey) => {
 
-    const tieBreakerAns = answerKey[answerKey.length-1].final_answer;
+    //Sort questions by id and grab tie breaker id (always last question)
+    const sortedKey = answerKey.sort((a,b) => {
+        //First sort by id
+        if(a.id > b.id) return 1;
+        if(a.id < b.id) return -1;
+    });
+
+    const tieBreakerAns = sortedKey[sortedKey.length-1].final_answer;
 
     //Add total Points difference to users
     for(let i=0; i < users.length; i++){

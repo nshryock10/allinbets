@@ -42,7 +42,15 @@ const getQuestions = (req, res, next) => {
         if(err){
             throw err;
         }
-        res.status(200).send(result.rows);
+
+        //Sort questions by id
+        const sortedQuestions = result.rows.sort((a,b) => {
+            //First sort by id
+            if(a.id > b.id) return 1;
+            if(a.id < b.id) return -1;
+        });
+
+        res.status(200).send(sortedQuestions);
     })
 }
 
