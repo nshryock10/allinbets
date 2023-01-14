@@ -25,6 +25,15 @@ function HomePage1 (props) {
       addUser();
       console.log(dataBase)
     }
+
+    /*
+ <div className="button-section">
+          <Link to='signup'>
+            <button id="hero-button">PLAY NOW</button>
+          </Link>
+        </div>
+        
+    */
       
     return (
     <div className="main">
@@ -41,13 +50,8 @@ function HomePage1 (props) {
           </div>
           
         </div>
-        <div className="button-section">
-          <Link to='signup'>
-            <button id="hero-button">PLAY NOW</button>
-          </Link>
-        </div>
-        <div className="section instructions">
-
+       
+    <div className="section instructions">
           <div className="instruction-step">
             <div className="step-content">
               <p className='step'>1. Sign up and pay the $10 buy-in</p>
