@@ -298,7 +298,7 @@ const setPot = async (req, res, next) => {
         const gameInfo = result[1].rows[0];
         const gameId = gameInfo.game_id;
         //Total collected = total paid users * (buy-in + fees)
-        const totalCollected = paymentInfo.length * (Number(gameInfo.buy_in) + Number(gameInfo.fees));
+        const totalCollected = (paymentInfo.length+1) * (Number(gameInfo.buy_in) + Number(gameInfo.fees));
         //total fees = total paid users * (fees)
         const totalFees = paymentInfo.length * Number(gameInfo.fees);
         //charity = (total collected - total fees) * 10%
