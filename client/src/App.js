@@ -6,7 +6,9 @@ import SignUp from './Components/SignUp';
 import Questions from './Components/Questions';
 import Submit from './Components/Submit';
 import Answers from './Components/Answers';
+import Contact from './StaticPages/Contact';
 import Nav from './Components/Nav';
+import PaymentPolicy from './StaticPages/PaymentPolicy';
 import LoadingSkeleton from './HelperComponents/LoadingSkeleton'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { generateUserIndex } from './utils/utils';
@@ -82,14 +84,13 @@ function App() {
                                               fees={gameInfo.fees}
                                               />} 
             />
+            <Route path='paymentpolicy' element={<PaymentPolicy />}/>
+            <Route path='contact' element={<Contact />}/>
           </Routes>
         </div>
         <footer>
           <ul className="footer-links">
-            <li>About</li>
-            <li>Charities</li>
-            <li>Scores</li>
-            <li>Contact Us</li>
+            <li>Brought to you by Shryock Web Design</li>
           </ul>
         </footer>
       </div>

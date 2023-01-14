@@ -66,6 +66,20 @@ function Nav() {
           >
             <li className="nav-item" >View Answers</li>
           </Link>
+          <Link className="nav-item" style={navStyle} to='paymentpolicy'
+            onClick={() => {
+              setMobileNavOpen((mobileNavOpen) => !mobileNavOpen)
+              }}
+          >
+            <li className="nav-item" >Payments and Scoring</li>
+          </Link>
+          <Link className="nav-item" style={navStyle} to='contact'
+            onClick={() => {
+              setMobileNavOpen((mobileNavOpen) => !mobileNavOpen)
+              }}
+          >
+            <li className="nav-item" >Contact</li>
+          </Link>
         </ul>
       </div>
       
