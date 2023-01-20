@@ -38,12 +38,25 @@ function TableRow(props) {
 
   }
 
-  return (
+  //Check if users have signed up or if data is loading
+  if(isLoading){
+    return(
+      <tr>
+        <td colSpan={3}>Loading...</td>
+      </tr>
+    )
+  }
+  else if(userData.length === 0 ){
+    return(
+      <tr className="loading-row">
+        <td colSpan={3}>Be the first to sign up!</td>
+      </tr>
       
-      
-      <tbody>
-        {userData.length === 0 && <tr>Loading....</tr>}
+    )
+  }
 
+  return (
+      <tbody>
         {userData.length > 0 && userData.map((user) => {
           //Check if user completed payment before displaying
           if(user.paid){

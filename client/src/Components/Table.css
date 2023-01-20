@@ -83,4 +83,8 @@ tbody tr:nth-child(even){
     border: 5px solid var(--green)
   }
 
+  .loading-row{
+    background-color: var(--light-purple);
+    color: white;
+  }
 
