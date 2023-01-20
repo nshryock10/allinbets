@@ -66,7 +66,7 @@ const getQuestions = (req, res, next) => {
 
 //Get game info
 const getGameInfo = async (req, res, next) => {
-    db.query('SELECT * FROM game_info', (err, result) => {
+    db.query('SELECT * FROM game_info WHERE game_id=$1', [1], (err, result) => {
         if(err){
             throw err;
         }
@@ -81,14 +81,15 @@ const addUser = async (req, res, next) => {
         id: req.body.userInfo.id,
         name: req.body.userInfo.name,
         username: req.body.userInfo.username,
+        phone: req.body.userInfo.phone,
         birthday: req.body.userInfo.birthday,
         email: req.body.userInfo.email,
         use_terms: req.body.userInfo.use_terms
     };
     
     //Query new user to database
-    db.query('INSERT INTO users (id, name, username, birthday, email, use_terms) VALUES ($1, $2, $3, $4, $5, $6)',
-    [userInfo.id, userInfo.name, userInfo.username, userInfo.birthday, userInfo.email, userInfo.use_terms],
+    db.query('INSERT INTO users (id, name, username, birthday, email, phone, use_terms) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+    [userInfo.id, userInfo.name, userInfo.username, userInfo.birthday, userInfo.email, userInfo.phone, userInfo.use_terms],
     (err, result) => {
         if(err){
             throw err
@@ -191,7 +192,7 @@ const updatePayout = () => {
 
     Promise.all([db.query('SELECT * FROM user_answers'), db.query('SELECT id, points, final_answer FROM questions'),
     db.query('SELECT pot FROM game_info')])
-    .then(result => {
+    .then(async result => {
         const answers = result[0].rows;
         const answerKey = result[1].rows;
         const pot = result[2].rows[0].pot;
@@ -201,9 +202,9 @@ const updatePayout = () => {
         const thirdPlace = pot *0.1;
         const payOut = [firstPlace, secondPlace, thirdPlace];
         
-        const scoredAnswers = scoreAnswers(answers, answerKey);
-        const scoredUsers = accumulateScore(scoredAnswers);
-        const podium = setPodium(scoredUsers, payOut, answerKey);
+        const scoredAnswers = await scoreAnswers(answers, answerKey);
+        const scoredUsers = await accumulateScore(scoredAnswers);
+        const podium = await setPodium(scoredUsers, payOut, answerKey);
         
         //Add podium score to scoredUsers
         for(let i=0; i < scoredUsers.length; i++){

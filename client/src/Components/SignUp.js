@@ -3,6 +3,8 @@ import './SignUp.css';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { checkUserName, verifyAge, verifyForm } from '../utils/utils';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 function SignUp() {
 
@@ -11,6 +13,7 @@ function SignUp() {
   const [name, setName] = useState('');
   const [userName, setUserName] = useState('');
   const [userNameMessage, setUserNameMessage] = useState(false);
+  const [phone, setPhone] = useState(false);
   const [mm, setMm] = useState('');
   const [dd, setDd] = useState('');
   const [yyyy, setYyyy] = useState('');
@@ -26,6 +29,7 @@ function SignUp() {
     if( email === '' ||
         name === null ||
         userName === null ||
+        phone === false ||
         mm === null ||
         dd === null ||
         yyyy === null){
@@ -49,6 +53,7 @@ function SignUp() {
           email: email,
           name:name,
           userName: userName,
+          phone: phone,
           mm: mm,
           dd: dd,
           yyyy: yyyy,
@@ -99,6 +104,10 @@ function SignUp() {
     }
     }
 
+    const handleChange = e => {
+      console.log(e)
+    }
+
   return (
     <div className="main">
         <h1>Sign up now to play!</h1>
@@ -143,6 +152,15 @@ function SignUp() {
               onBlur={(e) => handleBlur(e)}
             ></input>
           </div>
+          <div className="signup-input-container">
+              <label className="signup-label" >PHONE NUMBER:</label>
+              <PhoneInput 
+                country={'us'}
+                id="phone"
+                disableDropdown={true} 
+                onChange={(number) => setPhone(number)}
+              />
+          </div>
           {userNameMessage && <p className="form-error">User name is not available</p>}
           <div className="signup-input-container">
             <label className="signup-label">BIRTHDAY:</label>
@@ -179,13 +197,18 @@ function SignUp() {
           {dateMessage && <p className="form-error">Date is not valid</p>}
           <div className="checkbox-container">
             <input className="checkbox" type="checkbox" onChange={(e)=>handleCheckChange(e)}></input>
-            <label className="checkbox-label">I have read and agree to the terms of use</label>
+            <label className="checkbox-label"> 
+              <p>I certify that I agree to the Terms of Use and the information provided is accurate and that 
+                  I am at least 21 years of age. 
+              </p> 
+            </label>
           </div>
         </form>
         <div className="button-section">
           {(email === '' ||
             name === '' ||
             userName === '' ||
+            phone === false ||
             mm === '' ||
             dd === '' ||
             yyyy === '' ||

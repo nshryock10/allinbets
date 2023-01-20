@@ -22,14 +22,8 @@ function Nav() {
   const displayMobileNav = classNames('nav-links2', {
     open: mobileNavOpen,
   })
-  /*
- <Link className="nav-item" style={navStyle} to='signup'
-            onClick={() => {
-              setMobileNavOpen((mobileNavOpen) => !mobileNavOpen)
-              }}
-          >
-            <li className="nav-item" >Sign Up</li>
-          </Link>
+  /* Add back once games are activated
+ 
           */
   return (
     <nav>
@@ -60,7 +54,13 @@ function Nav() {
           >
             <li className="nav-item">Home</li>
           </Link>
-         
+         <Link className="nav-item" style={navStyle} to='signup'
+            onClick={() => {
+              setMobileNavOpen((mobileNavOpen) => !mobileNavOpen)
+              }}
+          >
+            <li className="nav-item" >Sign Up</li>
+          </Link>
           <Link className="nav-item" style={navStyle} to='answers'
             onClick={() => {
               setMobileNavOpen((mobileNavOpen) => !mobileNavOpen)

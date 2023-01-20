@@ -7,9 +7,12 @@ function QuestionCard(props) {
   
     const question = props.question;
     const index = props.index;
+    const setProgress = props.setProgress;
+    const finalAnswer = props.finalAnswer
 
     const setAnswer = (answer, index) => {
         question.answer = answer;
+        setProgress();
     }
 
     return (
@@ -27,7 +30,7 @@ function QuestionCard(props) {
                 />
                 <label>{option}</label>
             </div>)}
-          
+            
             {question.options.length === 0 && 
             <div>
                 <input 
@@ -37,6 +40,10 @@ function QuestionCard(props) {
                     onChange={(e) => {setAnswer(e.currentTarget.value)}}
                 />
             </div>}
+            {finalAnswer && 
+                <div>
+                    <p>{finalAnswer}</p>
+                </div>}
         </form>
     </div>
   )

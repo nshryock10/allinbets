@@ -89,11 +89,32 @@
 }
 .checkbox-container {
     margin: 10px 0;
+    display: flex;
 }
 .checkbox {
     margin: 0 15px;
+    align-self: flex-start;
+}
+.checkbox-label{
+    display: inline-block;
+    align-self: flex-start;
+}
+.checkbox-label p{
+    margin-top: 8px;
+}
+.form-control{
+    border: none !important;
+    padding-left: 10px !important;
 }
 
+.flag-dropdown{
+    height: 0 !important;
+    width: 0 !important
+}
+.flag{
+    height: 0 !important;
+    width: 0 !important
+}
 .checkbox-label {
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;

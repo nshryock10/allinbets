@@ -1,5 +1,4 @@
 import { v4 as uuid4 } from 'uuid';
-//const { v4: uuidv4 } = require("uuid");
 
 //export const API_ENDPOINT = "http://localhost:3000"; //Uncomment in Dev
 export const API_ENDPOINT = "https://all-in-bets.herokuapp.com"; //Uncomment in production
@@ -72,6 +71,20 @@ export const getQuestions = async () => {
     return questions;
 }
 
+export const loginUser = async (credentials) => {
+    const response = await fetch(`${API_ENDPOINT}/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(credentials)
+    })
+
+    const token = await response.json();
+
+    return token;
+}
+
 //Add user to data base
 export const addUser = async (user) => {
 
@@ -84,6 +97,7 @@ const userInfo = {
     username: user.userInfo.userName,
     birthday: `${user.userInfo.yyyy}-${user.userInfo.mm}-${user.userInfo.dd}`,
     email: user.userInfo.email,
+    phone: user.userInfo.phone,
     use_terms: user.userInfo.useTerms
 };
 const answers = user.questions;

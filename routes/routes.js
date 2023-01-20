@@ -31,12 +31,20 @@ router.get('/answers/:id', queries.getUserQuestionAnswers);
 //Get questions
 router.get('/questions', queries.getQuestions);
 
+//Get Login token
+router.post('/login', (req, res) => {
+    const username = req.params.username;
+    const password = req.params.password;
+    if(username==='rivRock' && password==='champ123'){
+        res.send({token: 'test123'});
+    }else{
+
+    }   res.send({token: 'incorrect'})
+    
+})
+
 //Add user to data base
-//Uses all middleware
-//router.post('/users', queries.addUser, queries.addUserAnswers, queries.addUserPaymentInfo, queries.updateScores, queries.updateUserScore, queries.setPot, queries.setPayOut);
-//Uses shell function for score updates
-//router.post('/users', queries.addUser, queries.addUserAnswers, queries.addUserPaymentInfo, queries.updateScores);
-//Reduced query approach
 router.post('/users', queries.addUser, queries.setPot, queries.addUserAnswers, queries.addUserPaymentInfo, queries.updatePayout);
+
 
 module.exports = router;

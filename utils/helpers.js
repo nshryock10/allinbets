@@ -44,7 +44,6 @@ const scoreAnswers = (userAnswers, answerKey) => {
             }else{
                 user.questions.push({question_id: row.question_id, score: null});
             }
-
             //Add tie breakerAnswer
             if(row.question_id === tieBreakerId){
                 user.tieAnswer = row.answer;
@@ -63,13 +62,11 @@ const accumulateScore = (users) => {
             score = score + question.score;
         })
         user.score = score;
-     })
-
+     }) 
      return scoredUsers;
 }
 
 const setPodium = (users, payOut, answerKey) => {
-
     //Sort questions by id and grab tie breaker id (always last question)
     const sortedKey = answerKey.sort((a,b) => {
         //First sort by id
@@ -101,7 +98,7 @@ const setPodium = (users, payOut, answerKey) => {
     };
 
     //Check that user array is >= payout
-    if(users.length >= payOut.length){
+    if(users.length > payOut.length){
         //Check for a tie (score below until unqiue value is found)
         for(let i=0; i <= payOut.length-1; i++){
             let user = sortedUsers[i];

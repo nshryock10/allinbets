@@ -8,15 +8,10 @@ function UseTerms() {
         <div>
             <h1>User Terms</h1>
             <p>
-                TBD....
-                <br/>
-                1st place: 60% of the pot
-                <br/>
-                2nd place: 30% of the pot
-                <br/>
-                3rd place: 10% of the pot
-                <br/>
-                See "Scoring and Tie Breaker" for how the winners are determined.
+            I understand that I may be contacted via email regarding feedback and new games and 
+            that I can opt out at any time.
+            My data will not be shared and will be deleted weekly.
+            
             </p>
             <br/>
         </div>

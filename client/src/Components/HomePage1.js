@@ -2,7 +2,7 @@ import React from 'react';
 import './HomePage.css';
 import '../App';
 import Table from './Table';
-import nfl_logo from '../images/NFLPlayoffLogo.svg';
+import nfl_logo from '../images/NFLPlayoffLogo.png';
 import { getAnswerKey } from '../utils/utils';
 import { Link } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
@@ -14,7 +14,7 @@ function HomePage1 (props) {
     const dataBase = props.dataBase;
     const payData = props.paymentData;
     const pot = props.pot;  
-    const answerKey = getAnswerKey();
+    //const answerKey = getAnswerKey();
 
     useEffect(() => {
       const timer = setTimeout(() => console.log('home page rendered...'), 3000);
@@ -25,19 +25,10 @@ function HomePage1 (props) {
       addUser();
       console.log(dataBase)
     }
-
-    /*
- <div className="button-section">
-          <Link to='signup'>
-            <button id="hero-button">PLAY NOW</button>
-          </Link>
-        </div>
-        
-    */
       
     return (
     <div className="main">
-        <h2 className="main-header" >Easy peasy, Straight forward, prop bets for NFL Wild Card Weekend </h2>
+        <h2 className="main-header" >Easy, Straight forward, prop bets for NFL Division Round </h2>
 
       <div className="body">
 
@@ -50,8 +41,12 @@ function HomePage1 (props) {
           </div>
           
         </div>
-       
-    <div className="section instructions">
+       <div className="button-section">
+          <Link to='signup'>
+            <button id="hero-button">PLAY NOW</button>
+          </Link>
+        </div>
+        <div className="section instructions">
           <div className="instruction-step">
             <div className="step-content">
               <p className='step'>1. Sign up and pay the $10 buy-in</p>
@@ -80,7 +75,7 @@ function HomePage1 (props) {
           <Table 
             data={dataBase} 
             payData={payData}
-            answerKey={answerKey}
+            //answerKey={answerKey}
             pot={pot}
           />
         </div>

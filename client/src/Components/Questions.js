@@ -3,7 +3,8 @@ import './Questions.css';
 import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import QuestionCard from './QuestionCard';
-import { getQuestions } from '../utils/utils';
+import ProgressBar from '../HelperComponents/ProgressBar';
+import { calcProgress } from '../utils/utils';
 import { useState } from 'react';
 import { getQuestions as getQuestionList } from '../utils/api';
 
@@ -17,6 +18,7 @@ function Questions() {
   const user = {email: location.state?.email, 
                 name: location.state?.name,
                 userName: location.state?.userName,
+                phone: location.state?.phone,
                 mm: location.state?.mm,
                 dd: location.state?.dd,
                 yyyy: location.state?.yyyy,
@@ -24,19 +26,21 @@ function Questions() {
                 };
   const [questions, setQuestions] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  //Questions will need to be imported from separate file
-  //const questions = getQuestions();
+  const [percentComplete, setPercentComplete] = useState(0)
 
   useEffect(() => {
     setIsLoading(true);
-    getQuestions1();
+    getQuestions();
     
   },[]);
 
-  const getQuestions1 = async () => {
+  const setProgress = () => {
+    const progress = Number(calcProgress(questions)).toFixed(0);
+    setPercentComplete(progress)
+  }
+  const getQuestions = async () => {
 
-    const setQuestions1 = (data) => {
+    const setQuestionList = (data) => {
      //set questions in correct format
      const sortedData = data.sort((a, b) => a.id - b.id);
      //itterate throgh array
@@ -52,7 +56,7 @@ function Questions() {
   }
 
   const data = await getQuestionList();
-  setQuestions1(data);
+  setQuestionList(data);
   setIsLoading(false);
 
 }
@@ -86,8 +90,16 @@ function Questions() {
         <h1>{`${user.name}, make your bets!`}</h1>
           {isLoading && <p>Loading...</p>}
           {questions && questions.map((question, index) => (
-              <QuestionCard question={question} key={index}/>
+              <QuestionCard 
+                question={question} 
+                setProgress={setProgress}
+                key={index}
+                finalAnswer={null}
+              />
           ))}
+          <ProgressBar 
+            progress={`${percentComplete}`}
+          />
           <Link onClick={handleSubmit} state={{questions:questions, user:user}} to='/checkout' >
               <button id="hero-button" type="submit" value="Submit Answers">Submit Answers</button>
           </Link>

@@ -14,7 +14,7 @@ function HomePage (props) {
     const dataBase = props.dataBase;
     const payData = props.paymentData;
     const pot = props.pot;  
-    const answerKey = getAnswerKey();
+    //const answerKey = getAnswerKey();
 
     useEffect(() => {
       const timer = setTimeout(() => console.log('home page re-rendered!'), 3000);
@@ -76,7 +76,7 @@ function HomePage (props) {
           <Table 
             data={dataBase} 
             payData={payData}
-            answerKey={answerKey}
+            //answerKey={answerKey}
             pot={pot}
           />
         </div>

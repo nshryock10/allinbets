@@ -8,6 +8,7 @@ import Submit from './Components/Submit';
 import Answers from './Components/Answers';
 import Contact from './StaticPages/Contact';
 import Nav from './Components/Nav';
+import Admin from './Components/Admin';
 import PaymentPolicy from './StaticPages/PaymentPolicy';
 import LoadingSkeleton from './HelperComponents/LoadingSkeleton'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -20,17 +21,12 @@ function App() {
   const [paymentInfo, setPaymentInfo] = useState([]);
   const [userCount, setUserCount] = useState(0);
   const [gameInfo, setGameInfo] = useState({});
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    console.log(userCount)
-    //if(dataBase.length === 0 || gameInfo.length === 0){
-    //console.log('Looking at the database')
     setIsLoading(true);
     const timer = setTimeout(getDataBase(), 3000)
     return () => clearTimeout(timer);
-    
-    //}
 
   }, [])
 
@@ -86,6 +82,7 @@ function App() {
             />
             <Route path='paymentpolicy' element={<PaymentPolicy />}/>
             <Route path='contact' element={<Contact />}/>
+            <Route path='admin' element={<Admin />}/>
           </Routes>
         </div>
         <footer>
