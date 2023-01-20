@@ -66,7 +66,7 @@ const getQuestions = (req, res, next) => {
 
 //Get game info
 const getGameInfo = async (req, res, next) => {
-    db.query('SELECT * FROM game_info WHERE game_id=$1', [1], (err, result) => {
+    db.query('SELECT * FROM game_info', (err, result) => {
         if(err){
             throw err;
         }
