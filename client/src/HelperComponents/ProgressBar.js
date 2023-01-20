@@ -11,7 +11,7 @@ function ProgressBar({progress}) {
         margin: 25,
         position: '-webkit-sticky',
         position: 'sticky',
-        bottom: '10px',
+        top: '12px',
       } 
       const Childdiv = { 
         height: '100%', 

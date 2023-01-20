@@ -89,6 +89,9 @@ function Questions() {
     <div className='main'>
         <h1>{`${user.name}, make your bets!`}</h1>
           {isLoading && <p>Loading...</p>}
+          <ProgressBar 
+            progress={`${percentComplete}`}
+          />
           {questions && questions.map((question, index) => (
               <QuestionCard 
                 question={question} 
@@ -97,9 +100,7 @@ function Questions() {
                 finalAnswer={null}
               />
           ))}
-          <ProgressBar 
-            progress={`${percentComplete}`}
-          />
+          
           <Link onClick={handleSubmit} state={{questions:questions, user:user}} to='/checkout' >
               <button id="hero-button" type="submit" value="Submit Answers">Submit Answers</button>
           </Link>
