@@ -25,7 +25,14 @@ function HomePage1 (props) {
       addUser();
       console.log(dataBase)
     }
-      
+    /*
+      <div className="button-section">
+          <Link to='signup'>
+            <button id="hero-button">PLAY NOW</button>
+          </Link>
+        </div>
+
+        */
     return (
     <div className="main">
         <h2 className="main-header" >Easy, Straight forward, prop bets for NFL Division Round </h2>
@@ -41,11 +48,7 @@ function HomePage1 (props) {
           </div>
           
         </div>
-       <div className="button-section">
-          <Link to='signup'>
-            <button id="hero-button">PLAY NOW</button>
-          </Link>
-        </div>
+       
         <div className="section instructions">
           <div className="instruction-step">
             <div className="step-content">
