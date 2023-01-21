@@ -66,7 +66,7 @@ function Questions() {
     e.stopPropagation();
 
     for(let i=0; i < questions.length; i++){
-      if(questions[i].answer === ''){
+      if(!questions[i].answer){
         alert('Fill out all questions!');
         return false;
       }
