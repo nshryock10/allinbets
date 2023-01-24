@@ -2,12 +2,12 @@ const rankUsers = (users) => {
     //Sort users by score & final answer
     const sortedUsers = users.sort((a,b) => {
         //First sort by score
-        if(a.score < b.score) return 1;
-        if(a.score > b.score) return -1;
+        if(Number(a.score) < Number(b.score)) return 1;
+        if(Number(a.score) > Number(b.score)) return -1;
 
         //Sort by difference between final score and actual
-        if(a.scoreDiff > b.scoreDiff) return 1;
-        if(a.scoreDiff < b.scoreDiff) return -1;
+        if(Number(a.scoreDiff) > Number(b.scoreDiff)) return 1;
+        if(Number(a.scoreDiff) < Number(b.scoreDiff)) return -1;
 
     });
 
@@ -78,8 +78,8 @@ const setPodium = (users, payOut, answerKey) => {
     //Sort questions by id and grab tie breaker id (always last question)
     const sortedKey = answerKey.sort((a,b) => {
         //First sort by id
-        if(a.id > b.id) return 1;
-        if(a.id < b.id) return -1;
+        if(Number(a.id) > Number(b.id)) return 1;
+        if(Number(a.id) < Number(b.id)) return -1;
     });
 
     const tieBreakerAns = sortedKey[sortedKey.length-1].final_answer;
