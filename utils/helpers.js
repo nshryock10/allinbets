@@ -54,6 +54,8 @@ const scoreAnswers = (userAnswers, answerKey) => {
             if(row.question_id === tieBreakerId){
                 user.tieAnswer = row.answer;
             }
+            console.log('tie breaker id')
+            console.log(tieBreakerId);
         })
 
         return scoredAnswers;
@@ -81,6 +83,8 @@ const setPodium = (users, payOut, answerKey) => {
     });
 
     const tieBreakerAns = sortedKey[sortedKey.length-1].final_answer;
+    console.log('tie breaker answer')
+    console.log(tieBreakerAns);
 
     //Add total Points difference to users
     for(let i=0; i < users.length; i++){
@@ -90,6 +94,7 @@ const setPodium = (users, payOut, answerKey) => {
             scoreDiff = scoreDiff * -1;
         }
         users[i].scoreDiff = scoreDiff;
+        console.log('score diff')
         console.log(scoreDiff)
     }
     

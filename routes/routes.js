@@ -9,12 +9,23 @@ router.get("/", (req, res, next) => {
 })
 
 //Listens for updates to final answers and updates scores
-db.prodListener.connect(() => console.log('Database connected!'));
-db.prodListener.query('LISTEN answer_update');
-db.prodListener.on('notification', () => {
-    console.log('Database question updated...')
-    queries.updatePayout()
-});
+if(process.env.PORT){
+    db.prodListener.connect(() => console.log('Database connected in production mode'));
+    db.prodListener.query('LISTEN answer_update');
+    db.prodListener.on('notification', () => {
+        console.log('Database question updated...')
+        queries.updatePayout()
+    });
+}else{
+    db.listener.connect(() => console.log('Database connected in dev mode'));
+    db.listener.query('LISTEN answer_update');
+    db.listener.on('notification', () => {
+        console.log('Database question updated...')
+        queries.updatePayout()
+    });
+}
+
+
 
 //Get all users
 router.get('/users', queries.getAllUsers);
