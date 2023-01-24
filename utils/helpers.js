@@ -17,7 +17,13 @@ const rankUsers = (users) => {
 const scoreAnswers = (userAnswers, answerKey) => {
 
     const scoredAnswers = [];
-    const tieBreakerId = answerKey[answerKey.length -1].id;
+    //Sort questions by id and grab tie breaker id (always last question)
+    const sortedKey = answerKey.sort((a,b) => {
+        //First sort by id
+        if(a.id > b.id) return 1;
+        if(a.id < b.id) return -1;
+    });
+    const tieBreakerId = sortedKey[sortedKey.length -1].id;
 
     if(userAnswers.length !== 0){
         userAnswers.map(row => {
@@ -84,6 +90,7 @@ const setPodium = (users, payOut, answerKey) => {
             scoreDiff = scoreDiff * -1;
         }
         users[i].scoreDiff = scoreDiff;
+        console.log(scoreDiff)
     }
     
     //Sort users by score
