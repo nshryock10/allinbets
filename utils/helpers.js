@@ -20,8 +20,8 @@ const scoreAnswers = (userAnswers, answerKey) => {
     //Sort questions by id and grab tie breaker id (always last question)
     const sortedKey = answerKey.sort((a,b) => {
         //First sort by id
-        if(a.id > b.id) return 1;
-        if(a.id < b.id) return -1;
+        if(Number(a.id) > Number(b.id)) return 1;
+        if(Number(a.id) < Number(b.id)) return -1;
     });
     const tieBreakerId = sortedKey[sortedKey.length -1].id;
 
