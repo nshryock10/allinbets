@@ -35,7 +35,7 @@ function HomePage1 (props) {
         */
     return (
     <div className="main">
-        <h2 className="main-header" >Easy, Straight forward, prop bets for NFL Division Round </h2>
+        <h2 className="main-header" >Easy, straight forward, prop bets for NFL Championship Sunday </h2>
 
       <div className="body">
 
@@ -47,6 +47,10 @@ function HomePage1 (props) {
             <img alt="nfl logo" className="img" src={nfl_logo} />
           </div>
           
+        </div>
+
+        <div className="home-hero">
+            <h3>Sign-ups start Sunday!</h3>
         </div>
        
         <div className="section instructions">
