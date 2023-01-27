@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import LoadingDots from '../HelperComponents/LoadingDots';
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
@@ -7,6 +7,7 @@ import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@pa
 function PayButtons (props) {
 
     const [{ options, isPending}, dispatch] = usePayPalScriptReducer();
+    const [paid, setPaid] = useState();
 
     const currency = "USD";
     const style = { layout: "vertical" };
@@ -25,7 +26,7 @@ function PayButtons (props) {
     const showSpinner = props.showSpinner;
     const buyInAmount = props.buyInAmount;
     const total = props.total;
-
+  
     useEffect(() => {
       dispatch({
         type: 'resetOptions',
@@ -35,6 +36,8 @@ function PayButtons (props) {
         },
       });
     }, [currency, showSpinner]);
+
+
 
     return(<>
       { (isPending) && <LoadingDots /> }
@@ -63,9 +66,8 @@ function PayButtons (props) {
               });
         }}
         onApprove={function (data, actions) {
-          return actions.order.capture().then(() => {
+          return actions.order.capture().then(async () => {
             setUser({...user, paymentComplete: true, orderId: data.orderID, paymentMethod: data.paymentSource, payerId: data.payerID});
-            
           });
         }}
         onError={function (err){
