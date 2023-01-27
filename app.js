@@ -11,6 +11,9 @@ const PORT = 3000;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.get('*', function(req, res) {
+    res.sendFile('index.html', {root: path.join(__dirname, '../../client/public/')});
+  });
 //app.use(express.static('client/build')); // serve static files (css & js) from the 'public' directory
 app.use(logger('dev'));
 app.use(cors());
