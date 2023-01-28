@@ -26,10 +26,8 @@ function HomePage1 (props) {
       console.log(dataBase)
     }
     /*
-      <div className="button-section">
-          <Link to='signup'>
-            <button id="hero-button">PLAY NOW</button>
-          </Link>
+      <div className="home-hero">
+            <h3>Sign-ups start Sunday!</h3>
         </div>
 
         */
@@ -48,10 +46,12 @@ function HomePage1 (props) {
           </div>
           
         </div>
-
-        <div className="home-hero">
-            <h3>Sign-ups start Sunday!</h3>
+        <div className="button-section">
+          <Link to='signup'>
+            <button id="hero-button">PLAY NOW</button>
+          </Link>
         </div>
+        
        
         <div className="section instructions">
           <div className="instruction-step">
