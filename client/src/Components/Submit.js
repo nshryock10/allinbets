@@ -1,7 +1,7 @@
 import '../App';
 import './Submit.css';
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IoLogoVenmo } from "react-icons/io5";
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import {addUser as addUserToDB } from '../utils/api';
@@ -11,6 +11,7 @@ import PayButtons from './PayPalButton';
 function Submit(props) {
 
   const location = useLocation();
+  const navigate = useNavigate();
   const questions = location.state?.questions;
   const updateUser = props.updateDataBase;
   const setUserCount = props.updateUserCount;
@@ -18,7 +19,7 @@ function Submit(props) {
   const CLIENT_ID = 'AflGXddWb4KVamd5un9eY3zdBwkFwm0OfRztruHurzIKaHAj_ZEm4QSzFcaXDXW4gqDhlsu30_s2rmEC';
   const sb_ID = 'AaP9oeFAJXTholgWoJH_xSeqcl-3C_SdpcaJ_UjpkbtO2tGl4i9qx1kSGr4WHX_IPT72yr-p9LgAqbov';
   const paymentOptions = {
-    "client-id": CLIENT_ID,
+    "client-id": sb_ID,
     components: "buttons,funding-eligibility",
     "enable-funding": "venmo",
     currency: "USD",
@@ -30,11 +31,13 @@ function Submit(props) {
   //Get this info from the data base
   const buyInAmount =  props.buyIn;
   const processingFee = props.fees;
+  const setUserPaid = props.setUserPaid;
   const total = Number(buyInAmount) + Number(processingFee);
   const currency = "USD";
   const style = { layout: "vertical" };
   const [paymentCompleted, setPaymentCompleted] = useState(false);
 
+  const [paid, setPaid] = useState(false);
   const [user, setUser] = useState({
                                       userInfo: userInfo,
                                       questions: questions,
@@ -75,11 +78,21 @@ function Submit(props) {
       alert('You must complete your payment before submitting your answers.');
       return false;
     }
+    console.log('submitting user')
     addUserToDB(user);
+    setUserPaid(true);
+    navigate("/", {state: {user:user}});
     //Update user count to have data refresh on home page
-    setUserCount(props.userCount++)
+    //setUserCount(props.userCount++)
     
   }
+
+  useEffect(() => {
+    if(paid){
+      handleSubmit();
+    }
+    
+  }, [paid])
 
   useEffect(() => {
     updateUser(user, user.index);
@@ -124,6 +137,8 @@ function Submit(props) {
               buyInAmount={buyInAmount}
               total={total}
               handleSubmit={handleSubmit}
+              paid={paid}
+              setPaid={setPaid}
             />
           </PayPalScriptProvider>
         </div>
@@ -143,9 +158,6 @@ function Submit(props) {
               <button id="hero-button">Finish Payment</button> 
               </Link>
         </div> )}  
-
-        
-
         </div>
     </div>
   );

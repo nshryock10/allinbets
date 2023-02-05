@@ -7,7 +7,10 @@ import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@pa
 function PayButtons (props) {
 
     const [{ options, isPending}, dispatch] = usePayPalScriptReducer();
-    const [paid, setPaid] = useState();
+    const paid = props.paid;
+    const setPaid = props.setPaid;
+    const handleSubmit = props.handleSubmit;
+
 
     const currency = "USD";
     const style = { layout: "vertical" };
@@ -37,8 +40,6 @@ function PayButtons (props) {
       });
     }, [currency, showSpinner]);
 
-
-
     return(<>
       { (isPending) && <LoadingDots /> }
       <PayPalButtons 
@@ -67,7 +68,8 @@ function PayButtons (props) {
         }}
         onApprove={function (data, actions) {
           return actions.order.capture().then(async () => {
-            setUser({...user, paymentComplete: true, orderId: data.orderID, paymentMethod: data.paymentSource, payerId: data.payerID});
+            setUser({...user, paymentComplete: true, orderId: data.orderID, paymentMethod: data.paymentSource, payerId: data.payerID})
+            setPaid(true)
           });
         }}
         onError={function (err){

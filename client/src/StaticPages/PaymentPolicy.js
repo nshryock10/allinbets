@@ -35,8 +35,6 @@ function PaymentPolicy() {
                 <br/><br/>
                 Example 2: No tie for first place, but 3 way tie for second. The top ranked user is awarded the first place payout and tied next 3 users
                 split the combined payout for 2nd and 3rd place. 
-                <br/><br/>
-                See "Scoring and Tie Breaker" for how the winners are determined.
             </p>
             <br/>
             <h2>Distribution of Buy In</h2>

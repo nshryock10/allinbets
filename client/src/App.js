@@ -22,6 +22,7 @@ function App() {
   const [userCount, setUserCount] = useState(0);
   const [gameInfo, setGameInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [userPaid, setUserPaid] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -68,7 +69,12 @@ function App() {
         <div className="content-container">
           <Nav />
           <Routes> 
-            <Route path='/' element={!isLoading ? <HomePage1 dataBase={dataBase}  pot={gameInfo.pot} /> : <LoadingSkeleton/>} />
+            <Route path='/' element={!isLoading ? <HomePage1 
+                                                      dataBase={dataBase}  
+                                                      pot={gameInfo.pot} 
+                                                      userPaid={userPaid}
+                                                      setUserPaid={setUserPaid}
+                                                    /> : <LoadingSkeleton/>} />
             <Route path='signup' element={<SignUp />} />
             <Route path='questions' element={<Questions />} />
             <Route path='answers' element={<Answers dataBase={dataBase} />} />
@@ -78,6 +84,7 @@ function App() {
                                               updateDataBase={addUser}
                                               buyIn={gameInfo.buy_in}
                                               fees={gameInfo.fees}
+                                              setUserPaid={setUserPaid}
                                               />} 
             />
             <Route path='paymentpolicy' element={<PaymentPolicy />}/>

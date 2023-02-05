@@ -287,19 +287,14 @@ const updateUserScore = async (req, res, next) => {
             setPot();
         })
         
-        //next();
-    })/**/
-    
-    //Set payout function
-    //setPot();
-    //setPayOut();  
+    });  
     
 }
 
 const setPot = async (req, res, next) => {
     console.log('Setting pot...')
     //Fees
-    //$1.5 server fee, $0.49 + $0.41 paypal transaction, $0.87 taxes on $12.40 transaction = $10 buy-in + $3.26 taxes and fees
+    //$0.42 server fee, $0.49 + $0.41 paypal transaction, $0.78 taxes on $11.27 transaction = $10 buy-in + $2.06 taxes and fees
     
     //Get user ids and payment (y/n) from payment_info
     //Get buy-in and fees from game_info
@@ -326,11 +321,6 @@ const setPot = async (req, res, next) => {
                 throw err;
             }
         })
-        
-        /*.then(result => {
-            console.log('Finished updating pot')
-            setPayOut();
-        })*/
         
         next();
     })
